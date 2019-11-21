@@ -18,3 +18,5 @@ heroku config:set key=value
 npm i passport passport-google-oauth20 cookie-session mongoose
 
 make sure to set mongo-prod db to accept all ip
+
+https://yt-video-tagger.herokuapp.com/
