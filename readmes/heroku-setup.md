@@ -16,3 +16,5 @@ heroku config:set key=value
 
 *** npm i env-cmd nodemon --save-dev
 npm i passport passport-google-oauth20 cookie-session mongoose
+
+make sure to set mongo-prod db to accept all ip
