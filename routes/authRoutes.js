@@ -22,9 +22,5 @@ module.exports = app => {
         req.logout();
         res.send(req.user);
     });
-
-    app.get('/' , (req, res) => {
-        res.send(req.user);
-    })
     // All routes wrapped in a function
 };
