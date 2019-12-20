@@ -35,6 +35,7 @@ module.exports = app => {
         const tagList = new TagList({
             title,
             tags: tags,
+            _user: req.user.id,
             dateCreated: Date.now()
         });
 
