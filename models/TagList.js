@@ -9,15 +9,11 @@ const tagListSchema = new Schema({
     tags: {
         type: [String]
     },
-    owner: {
-        type: mongoose.Schema.Types.ObjectId,
-        required: true,
-        ref: 'users'
-    }
-}, {
-    timestamps: true
+    _user: { type: Schema.Types.ObjectId, ref: 'User' 
+    },
+    dateCreated: Date
 });
 
 
-mongoose.model('users', tagListSchema);
+mongoose.model('tagLists', tagListSchema);
 

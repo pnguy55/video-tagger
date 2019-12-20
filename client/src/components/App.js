@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, HashRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
 import Landing from './Landing';
-const Dashboard = () => <h2>Dashboard</h2>
-const SurveyNew = () => <h2>SurveyNew</h2>
+import Dashboard from './Dashboard';
+import TagListWizard from './tagLists/TagListWizard';
 
 
 
@@ -17,16 +17,16 @@ class App extends Component {
     render() {
         return (
             <div className="container">
-                <BrowserRouter>
-                    <div>
+                <HashRouter basename='/'>
+                    <div className="container">
                         {/* the exact makes sure that it only shows up on that path */}
                         <Header/>
-                        <Route exact path='/' component={Landing} />
-                        <Route exact path='/surveys' component={Dashboard} />
-                        <Route path='/survey/new' component={SurveyNew} />
+                        <Route exact path='/' component={TagListWizard} />
+                        <Route exact path='/tagLists' component={Dashboard} />
+                        {/* <Route path='/tagLists/new' component={TagListWizard} /> */}
                         <Route path='/landing' component={Landing} />
                     </div>
-                </BrowserRouter>
+                </HashRouter>
             </div>
         );
     }

@@ -1,8 +1,28 @@
 import axios from 'axios';
-import { FETCH_USER } from './types';
+import { FETCH_USER, FETCH_TAGLISTS, DELETE_TAGLIST } from './types';
 
+// these are our action creators
 export const fetchUser = () => async dispatch => {
-        const res = await axios.get('/api/current_user');
-        dispatch({ type: FETCH_USER, payload: res.data });
-    }
-;
+    const res = await axios.get('/api/current_user');
+    dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+
+export const submitTagList = (values, history) => async dispatch => {
+    const res = await axios.post('/api/tagLists', values);
+    // pushing to history for redirect purposes
+    history.push('/tagLists');
+    dispatch({ type: FETCH_USER, payload: res.data });
+};
+
+export const fetchTagLists = () => async dispatch => {
+    const res = await axios.get('/api/tagLists');
+
+    dispatch({ type: FETCH_TAGLISTS, payload: res.data});
+}
+
+export const deleteTagList = (tagListId, history) => async dispatch => {
+    const res = await axios.delete(`/api/tagLists/${tagListId}`);
+
+    dispatch({ type: DELETE_TAGLIST, payload: res.data});
+}

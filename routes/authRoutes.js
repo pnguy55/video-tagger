@@ -1,7 +1,7 @@
 const passport = require('passport');
 
 module.exports = app => {
-    // All routes wrapped in a function
+    // All routes rapped in a function
     app.get(
         '/auth/google', 
         passport.authenticate('google', {
@@ -11,7 +11,9 @@ module.exports = app => {
     );
 
     // After user approves of google auth, this is where google goes 
-    app.get('/auth/google/callback', passport.authenticate('google'));
+    app.get('/auth/google/callback', passport.authenticate('google'), (req, res) => {
+        res.redirect('/#/surveys');
+    });
     
     app.get('/api/current_user', (req, res) => {
         res.send(req.user);
@@ -20,7 +22,8 @@ module.exports = app => {
     app.get('/api/logout', (req, res) => {
         // passport auto included function
         req.logout();
-        res.send(req.user);
+        res.redirect('/');
     });
+
     // All routes wrapped in a function
 };

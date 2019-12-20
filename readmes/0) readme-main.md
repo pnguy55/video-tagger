@@ -1,6 +1,3 @@
-deployed on codephony@gmail.com heroku
-
-mongo is codephony
-
-google api is codephony@gmail.com
+deployed on pnguy55@gmail.com heroku
+stripe is on codephony@gmail.com
 
