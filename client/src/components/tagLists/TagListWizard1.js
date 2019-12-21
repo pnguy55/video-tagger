@@ -18,15 +18,20 @@ const TagListWizard1 = ({ onCancel, formValues, submitTagList, history, titleSub
     })
 
 
-    const generateChoices = _.map(videoList, ({ title, videoId, videoURL, thumbnail, channelTitle }) => {
+    const generateChoices = _.map(videoList, ({ title, videoId, videoURL, thumbnail, channelTitle, channelURL }) => {
         return (
-            <div className='col s12 m4 l3' key={videoId} style={{display: 'flex', flexDirection: 'column'}}>
-                <img src={thumbnail.url} style={{height: 'auto', width: '100%'}} />
-                <a href={videoURL} target="_blank">Link to Video</a>
-                <label className='row'>
-                    <input className='col s12' type="checkbox" value={videoId} />
-                    <span className='col s12'>{title}</span>
-                </label>
+            <div key={videoId} className='card col s12 m6 l6'>
+                <div className='card card-image' key={videoId} style={{display: 'flex', flexDirection: 'column'}}>
+                    <img src={thumbnail.url} style={{height: 'auto', width: '100%'}} />
+                    <a href={channelURL} target="_blank" className='card-title black white-text' style={{padding:'5px', fontSize:'1rem'}}>{channelTitle}<i className='material-icons right'>open_in_new</i></a>
+                </div>
+                <div className='card-content' style={{padding:'3px'}}>
+                    <a className='btn red darken-4' href={videoURL} style={{}} target="_blank">Link to Video<i className='material-icons right'>open_in_new</i></a>
+                    <label className='row'>
+                        <input className='col s12' type="checkbox" value={videoId} />
+                        <span className='col s12'>{title}</span>
+                    </label>
+                </div>
             </div>
         );
     })

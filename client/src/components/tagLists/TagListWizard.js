@@ -29,8 +29,9 @@ class TagListWizard extends Component {
                     title: snippet.title,
                     videoId: id.videoId,
                     videoURL: `https://www.youtube.com/watch?v=${id.videoId}`,
-                    thumbnail: snippet.thumbnails.default,
-                    channelTitle: snippet.channelTitle
+                    thumbnail: snippet.thumbnails.medium,
+                    channelTitle: snippet.channelTitle,
+                    channelURL: `https://www.youtube.com/channel/${snippet.channelId}`
                 });
             })
             currentComponent.setState({
