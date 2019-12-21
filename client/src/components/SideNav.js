@@ -32,7 +32,7 @@ class Sidenav extends Component {
                     className="brand-logo black-text"
                     style={{position:'relative'}}
                     >
-                        Emaily
+                        Tagger
                     </Link>
                 </div>
             </li>

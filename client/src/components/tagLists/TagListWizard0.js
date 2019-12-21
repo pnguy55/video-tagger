@@ -22,13 +22,13 @@ class TagListWizard0 extends Component {
                 {/* If onSurveySubmit had () it would call the function the instant the component is rendered */}
                 <form onSubmit={this.props.handleSubmit(this.props.onTagListSubmit)}>
                     {this.renderFields()}
-                    <Link to="/" onClick={() => window.location.reload()} className="red btn-flat white-text">
+                    <Link to="/tagLists" onClick={() => window.location.reload()} className="red btn-flat white-text">
                         Cancel
                         <i className="material-icons right">cancel</i>
                     </Link>
                     <button className="teal btn-flat right white-text" type="submit">
                         Next
-                        <i className="material-icons right">done</i>
+                        <i className="material-icons right">arrow_forward</i>
                     </button>
                 </form>
             </div>
