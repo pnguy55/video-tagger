@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
+const axios = require('axios')
 
 const TagList = mongoose.model('tagLists');
 
@@ -48,6 +49,26 @@ module.exports = app => {
         }
     });
 
+    app.get('/api/tagLists/gatherVideoList/:videoTitle', async (req, res) => {
+        axios.get(`https://www.googleapis.com/youtube/v3/search?maxResults=12&part=snippet&order=viewCount&q=${req.params.videoTitle}+&type=video+&videoDefinition=high&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
+            .then(function (googleRes) {
+                const { items } = googleRes.data;
+                const videoList = _.map(items, ({snippet, id }) => {
+                    return ({
+                        title: snippet.title,
+                        videoId: id.videoId,
+                        videoURL: `https://www.youtube.com/watch?v=${id.videoId}`,
+                        thumbnail: snippet.thumbnails.medium,
+                        channelTitle: snippet.channelTitle,
+                        channelURL: `https://www.youtube.com/channel/${snippet.channelId}`
+                    });
+                })
+                res.send(videoList);
+            })
+            .catch(function (error) {
+                console.log(error);
+            })
+    })
     // app.get('api/', requireLogin, (req, res) => {
 
     // });

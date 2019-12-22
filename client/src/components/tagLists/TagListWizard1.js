@@ -18,7 +18,7 @@ const TagListWizard1 = ({ onCancel, formValues, submitTagList, history, titleSub
     })
 
 
-    const generateChoices = _.map(videoList, ({ title, videoId, videoURL, thumbnail, channelTitle, channelURL }) => {
+    const generateChoices = _.map(videoList.data, ({ title, videoId, videoURL, thumbnail, channelTitle, channelURL }) => {
         return (
             <div key={videoId} className='card col s12 m6 l6'>
                 <div className='card card-image' key={videoId} style={{display: 'flex', flexDirection: 'column'}}>
