@@ -66,7 +66,7 @@ module.exports = app => {
                 res.send(videoList);
             })
             .catch(function (error) {
-                console.log(error);
+                res.send(error);
             })
     })
     // app.get('api/', requireLogin, (req, res) => {

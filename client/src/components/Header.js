@@ -35,8 +35,10 @@ class Header extends Component {
                         <Link 
                         to={this.props.auth ? '/' : '/'} 
                         className="brand-logo"
+                        style={{height: '100%', display: 'flex', alignItems: 'center'}}
                         >
-                            Video Tagger
+                            <img src='/yt-tagger.png' style={{height: '2rem', width: 'auto'}}></img> 
+                            Tagger
                         </Link>
                         <SideNav>
                                 {this.renderContent()}

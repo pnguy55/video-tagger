@@ -5,32 +5,26 @@ import React, { Component } from 'react';
 // the Field class can represent any input field
 import { reduxForm, Field } from 'redux-form';
 import { Link } from 'react-router-dom';
-import TagListWizardField from './TagListWizardField';
 import formFields from './formFields-step-1';
+import renderFields from './renderFields'
 
-class TagListWizard0 extends Component {
-
-    renderFields(label, name) {
-        return _.map(formFields, ({ label, name }) => {
-            return <Field key={name} label={label} name={name} component={TagListWizardField} type='text' />
-        });
-    }
+class TagListWizard0 extends Component {    
 
     render(){
         return (
-            <div>
-                {/* If onSurveySubmit had () it would call the function the instant the component is rendered */}
-                <form onSubmit={this.props.handleSubmit(this.props.onTagListSubmit)}>
-                    {this.renderFields()}
-                    <Link to="/tagLists" onClick={() => window.location.reload()} className="red btn-flat white-text">
-                        Cancel
-                        <i className="material-icons right">cancel</i>
-                    </Link>
-                    <button className="teal btn-flat right white-text" type="submit">
-                        Next
-                        <i className="material-icons right">arrow_forward</i>
-                    </button>
-                </form>
+            <div className='container soft-outter' style={{display:'flex', flexDirection:'column', alignItems:'center', marginTop:'3rem'}}>
+                <div className='soft-inner'>
+                    {/* If onSurveySubmit had () it would call the function the instant the component is rendered */}
+                    
+                    <form onSubmit={this.props.handleSubmit(this.props.onTagListSubmit)} style={{height: '100%', width: '100%', padding: '1rem'}}>
+                        {renderFields()}
+                        <div className='soft-outter btn-wrapper'>
+                            <button className="soft-inner right black-text flex-column btn-soft" style={{padding:'1rem', marginBottom: '.5rem'}} type="submit">
+                                <i className="material-icons" style={{fontSize: '3rem'}}>arrow_forward</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         );
     }
