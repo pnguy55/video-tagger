@@ -35,6 +35,20 @@ const TagListWizard1 = ({ onCancel, formValues, submitTagList, history, titleSub
             </div>
         );
     })
+    
+    const form_buttons = () => {
+        return(
+            <div>
+                <button className="yellow darken-3 btn-flat" onClick={ onCancel }>
+                    Back
+                </button>
+                <button onClick={() => titleSubmitHandler(formValues['title'])} className="teal btn-flat right white-text">
+                    Next
+                    <i className="material-icons right">arrow_forward</i>
+                </button>
+            </div>
+        )
+    }
 
     return (
         <div>
@@ -45,19 +59,13 @@ const TagListWizard1 = ({ onCancel, formValues, submitTagList, history, titleSub
                 </div>
             </div>
             <h6>Which of these videos is most related to yours?</h6>
+            
             <form className='row'>
-                {generateChoices}
+                {videoList.data!==[''] ? generateChoices : console.log('no videos')}
 
             </form>
-            {console.log(videoList)}
 
-            <button className="yellow darken-3 btn-flat" onClick={ onCancel }>
-                Back
-            </button>
-            <button onClick={() => titleSubmitHandler(formValues['title'])} className="teal btn-flat right white-text">
-                Next
-                <i className="material-icons right">arrow_forward</i>
-            </button>
+            {form_buttons()}
             
         </div>
     );
