@@ -42,11 +42,6 @@ class Sidenav extends Component {
         <div className="hide-on-large-only">
           <i data-target='slide-out' className="sidenav-trigger material-icons">menu</i>
         </div>
-        <div className="hide-on-large-only fixed-action-btn">
-            <div data-target="slide-out" className="sidenav-trigger btn-floating btn-large red darken-4">
-                <i className="material-icons">menu</i>
-            </div>
-        </div>
       </>
     );
   }

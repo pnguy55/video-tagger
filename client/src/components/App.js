@@ -16,9 +16,9 @@ class App extends Component {
     };
     render() {
         return (
-            <div className="container">
+            <div>
                 <HashRouter basename='/'>
-                    <div className="container">
+                    <div>
                         {/* the exact makes sure that it only shows up on that path */}
                         <Header/>
                         <Route exact path='/' component={TagListWizard} />

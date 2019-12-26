@@ -46,9 +46,13 @@ class Header extends Component {
                         <ul id="nav-mobile" className="right hide-on-med-and-down">
                             {this.renderContent()}
                         </ul>
-                    </div>
-                    
+                    </div>                    
                 </nav>
+                <div className="hide-on-large-only fixed-action-btn">
+                    <div data-target="slide-out" className="sidenav-trigger btn-floating btn-large red darken-4">
+                        <i className="material-icons">menu</i>
+                    </div>
+                </div>
             </div>
         );
     }
