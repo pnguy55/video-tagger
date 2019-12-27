@@ -32,14 +32,13 @@ class Header extends Component {
             <div>
                 <nav className='red darken-4 lighten-1'>
                     <div className="nav-wrapper">
-                        <Link 
-                        to={this.props.auth ? '/' : '/'} 
+                        <a href='/'
                         className="brand-logo"
                         style={{height: '100%', display: 'flex', alignItems: 'center'}}
                         >
                             <img src='/yt-tagger.png' style={{height: '2rem', width: 'auto'}}></img> 
                             Tagger
-                        </Link>
+                        </a>
                         <SideNav>
                                 {this.renderContent()}
                         </SideNav>

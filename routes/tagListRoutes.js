@@ -1,7 +1,8 @@
 const _ = require('lodash');
 const mongoose = require('mongoose');
 const requireLogin = require('../middlewares/requireLogin');
-const axios = require('axios')
+const axios = require('axios');
+const decode = require('unescape');
 
 const TagList = mongoose.model('tagLists');
 
@@ -55,7 +56,7 @@ module.exports = app => {
                 const { items } = googleRes.data;
                 const videoList = _.map(items, ({snippet, id }) => {
                     return ({
-                        title: snippet.title,
+                        title: decode(snippet.title),
                         videoId: id.videoId,
                         videoURL: `https://www.youtube.com/watch?v=${id.videoId}`,
                         thumbnail: snippet.thumbnails.medium,
@@ -70,6 +71,25 @@ module.exports = app => {
             })
     })
 
+    app.get('/api/tagLists/gatherTagLists/:listOfVideoIds', async (req, res) => {
+
+        // ids must be separated by %
+        const listOfVideoIds = req.params.listOfVideoIds.toString().replace(/\+/g,'%2C')
+        axios.get(`https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${listOfVideoIds}&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
+        .then(function (googleRes) {
+            const { items } = googleRes.data;
+            const tagList = _.map(items, ({ snippet }) => {
+                return ({
+                    channelTitle: snippet.channelTitle,
+                    tags: snippet.tags
+                });
+            })
+            res.send(tagList);
+        })
+        .catch(function (error) {
+            res.send(error);
+        })
+    })
 
 
     // app.get('api/', requireLogin, (req, res) => {

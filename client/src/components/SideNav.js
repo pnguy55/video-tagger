@@ -27,14 +27,14 @@ class Sidenav extends Component {
         >
             <li>
                 <div>
-                    <Link 
-                    to={this.props.auth ? '/' : '/'} 
+                    <a
+                    href='/' 
                     className="brand-logo black-text"
                     style={{position:'relative', height: '2rem', display: 'flex', alignItems: 'center'}}
                     >
                         <img src='/yt-tagger.png' style={{height: '100%', width: 'auto'}}></img> 
                         Tagger
-                    </Link>
+                    </a>
                 </div>
             </li>
             {this.props.children}
