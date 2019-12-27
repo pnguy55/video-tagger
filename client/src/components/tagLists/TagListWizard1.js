@@ -5,13 +5,11 @@ import { reduxForm, Field } from 'redux-form';
 import formFields from './formFields-step-1';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions/index';
+import YoutubeModal from 'react-youtube-modal';
 
-import FsLightbox from 'fslightbox-react';
+let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHandler, videoList  }) => {
 
 
-let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHandler, videoList, isOpen, openModalHandler, closeModalHandler }) => {
-
-    const [toggler, setToggler] = useState(false);
 
     useEffect(() => {
         getRelatedVideosHandler(formValues['title'])
@@ -48,7 +46,7 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
         )
     }
 
-    const generateChoices = _.map(videoList.data, ({ title, videoId, videoURL, thumbnail, channelTitle, channelURL }) => {
+    const generateChoices = _.map(videoList.data, ({ videoIndex, title, videoId, videoURL, thumbnail, channelTitle, channelURL }) => {
         return (
             <div key={videoId} className='soft-outter col s12 m5 l5 offset-m1 offset-l1' style={{padding: '0px'}}>
                 <div className='soft-outter card' style={{backgroundColor: "var(--softBackground)", width: '100%', height: '100%'}}>
@@ -57,27 +55,15 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
                         <a href={channelURL} target="_blank" rel='noopener noreferrer' className='card-title black white-text' style={{padding:'5px', fontSize:'1rem'}}>{channelTitle}<i className='material-icons right'>open_in_new</i></a>
                     </div>
                     <div className='card-content container flex-column' style={{padding:'0px 3px'}}>
-                        {/* <a className='row btn red darken-4' href={videoURL} target="_blank" rel='noopener noreferrer'><span className="col s9" style={{}}>Watch</span><i className='material-icons right col s3'>open_in_new</i></a>
-                         */}
-
-
-                            <button type='button' onClick={ () => setToggler(!toggler) }>
-                            Toggle Lightbox
-                            </button>
-                            <FsLightbox
-                            toggler={ toggler }
-                            type={'youtube'}
-                            sources={ [
-                            `https://www.youtube.com/watch?v=${videoId}`
-                            ] }
-                            />
-
-
-
-                            <label className='row card-checkbox'>
-                                <Field name={videoId} id={videoId} component='input' type='checkbox'></Field>
-                                <span className='flow-text col s12'>{title}</span>
-                            </label>
+                        
+                        <YoutubeModal videoId={videoId} >
+                            <button className='row btn red darken-4' type="button"><span className="col s9" style={{}}>Watch</span><i className='material-icons right col s3'>open_in_new</i></button>
+                        </YoutubeModal>
+                                                                
+                        <label className='row card-checkbox'>
+                            <Field name={videoId} id={videoId} component='input' type='checkbox'></Field>
+                            <span className='flow-text col s12 black-text'>{title}</span>
+                        </label>
                         
                     </div>
                 </div>
@@ -89,6 +75,7 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
 
     return (
         <div className='container'>
+            <script src="//cdn.jsdelivr.net/npm/afterglowplayer@1.x"></script>
             <h5 className='col s12 m6 offset-m3 l4 offset-l4'>Based on your title</h5>
             <div>
                 <div>

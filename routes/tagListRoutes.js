@@ -54,8 +54,10 @@ module.exports = app => {
         axios.get(`https://www.googleapis.com/youtube/v3/search?maxResults=12&part=snippet&order=viewCount&q=${req.params.videoTitle}+&type=video+&videoDefinition=high&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
             .then(function (googleRes) {
                 const { items } = googleRes.data;
+                let index = 1;
                 const videoList = _.map(items, ({snippet, id }) => {
                     return ({
+                        videoIndex: index++,
                         title: decode(snippet.title),
                         videoId: id.videoId,
                         videoURL: `https://www.youtube.com/watch?v=${id.videoId}`,
