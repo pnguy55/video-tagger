@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import formFields from './formFields-step-1';
 import { withRouter } from 'react-router-dom';
@@ -7,6 +7,8 @@ import * as actions from '../../actions/index';
 
 
 const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWholeListOfTagsHandler, wholeListOfTags }) => {
+
+    const [tags, setTags] = useState([]);
 
     useEffect(() => {
 
@@ -54,9 +56,28 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
 
     const tagLister = (wholeListOfTags) => {
         const listOfTags = _.map(wholeListOfTags, ({channelTitle, tags}) => {
-            return `${channelTitle}, ${tags.join(', ')}`
-        })
+            return `${channelTitle}, ${tags.join(',')}`
+        });
+        
         return listOfTags.join(', ')
+    }
+
+    const letterCounter = (x) => {
+        x = x.replace(/\s/g,'aaa')
+        return x.replace(/[^a-zA-Z]/g, '').length;
+    }
+
+
+    const tagBubbler = (listOfTags) => {
+        const listOfTagBubbles = _.map(listOfTags, (tag) => {
+            return (
+                <div key={tag} className='light-green accent-2' style={{display:'flex', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
+                    <div className='flow-text' style={{marginRight:'2px'}}>{tag}</div><i className='material-icons'>highlight_off</i>
+                </div>
+            )
+        })
+        return listOfTagBubbles;
+
     }
   
 
@@ -72,7 +93,8 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
             
             <form className='row'>
 
-                <p className="flow-text">{tagLister(wholeListOfTags)}</p>
+                <p className="flow-text">{letterCounter(tagLister(wholeListOfTags))}</p>
+                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(tagLister(wholeListOfTags).split(','))}</div>
                 <div className='container'>{form_buttons()}</div>
             </form>
             
