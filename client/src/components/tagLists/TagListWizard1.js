@@ -1,13 +1,17 @@
 import _ from 'lodash';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field } from 'redux-form';
 import formFields from './formFields-step-1';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions/index';
 
+import FsLightbox from 'fslightbox-react';
+
 
 let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHandler, videoList, isOpen, openModalHandler, closeModalHandler }) => {
+
+    const [toggler, setToggler] = useState(false);
 
     useEffect(() => {
         getRelatedVideosHandler(formValues['title'])
@@ -53,8 +57,23 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
                         <a href={channelURL} target="_blank" rel='noopener noreferrer' className='card-title black white-text' style={{padding:'5px', fontSize:'1rem'}}>{channelTitle}<i className='material-icons right'>open_in_new</i></a>
                     </div>
                     <div className='card-content container flex-column' style={{padding:'0px 3px'}}>
-                        <a className='row btn red darken-4' href={videoURL} target="_blank" rel='noopener noreferrer'><span className="col s9" style={{}}>Watch</span><i className='material-icons right col s3'>open_in_new</i></a>
-                        
+                        {/* <a className='row btn red darken-4' href={videoURL} target="_blank" rel='noopener noreferrer'><span className="col s9" style={{}}>Watch</span><i className='material-icons right col s3'>open_in_new</i></a>
+                         */}
+
+
+                            <button type='button' onClick={ () => setToggler(!toggler) }>
+                            Toggle Lightbox
+                            </button>
+                            <FsLightbox
+                            toggler={ toggler }
+                            type={'youtube'}
+                            sources={ [
+                            `https://www.youtube.com/watch?v=${videoId}`
+                            ] }
+                            />
+
+
+
                             <label className='row card-checkbox'>
                                 <Field name={videoId} id={videoId} component='input' type='checkbox'></Field>
                                 <span className='flow-text col s12'>{title}</span>
