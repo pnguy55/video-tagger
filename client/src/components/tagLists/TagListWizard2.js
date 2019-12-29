@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions/index';
 
 
-const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWholeListOfTagsHandler, wholeListOfTags }) => {
+const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWholeListOfTagsHandler, wholeListOfTags, letterCount }) => {
 
     const [tags, setTags] = useState([]);
 
@@ -58,22 +58,22 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
         )
     }
 
-    const tagLister = (wholeListOfTags) => {
-        const listOfTags = _.map(wholeListOfTags, ({channelTitle, tags}) => {
-            return `${channelTitle}, ${tags.join(',')}`
-        });
+    // const tagLister = (wholeListOfTags) => {
+    //     const listOfTags = _.map(wholeListOfTags, ({channelTitle, tags}) => {
+    //         return `${channelTitle}, ${tags.join(',')}`
+    //     });
 
-        return listOfTags.join(', ')
-    }
+    //     return listOfTags.join(', ')
+    // }
 
-    const letterCounter = (x) => {
-        x = x.replace(/\s/g,'aaa')
-        return x.replace(/[^a-zA-Z]/g, '').length;
-    }
+    // const letterCounter = (x) => {
+    //     x = x.replace(/\s/g,'aaa')
+    //     return x.replace(/[^a-zA-Z]/g, '').length;
+    // }
 
 
     const tagBubbler = (listOfTags) => {
-        const listOfTagBubbles = _.map(listOfTags, (tag) => {
+        const listOfTagBubbles = listOfTags.map(tag => {
             return (
                 <div key={tag} className='soft-outter' style={{display:'flex',marginRight:'2px', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
                     <div className='soft-inner' style={{padding:'3px'}}>
@@ -99,10 +99,11 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
             
             <form className='row'>
 
-                <p className="flow-text">{letterCounter(tagLister(wholeListOfTags))}</p>
+                <p className="flow-text">{letterCount}</p>
                 {console.log(wholeListOfTags)}
-                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(tagLister(wholeListOfTags).split(','))}</div>
-                {console.log(tagLister(wholeListOfTags).split(','))}
+                
+                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
+
                 <p>{tags}</p>
                 <div className='container'>{form_buttons()}</div>
             </form>

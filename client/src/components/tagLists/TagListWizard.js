@@ -1,5 +1,6 @@
 // SurveyNew show SurveyForm compnent and SurveyFormReviewComponent
 import React, { Component } from 'react';
+import _ from 'lodash'
 import PropTypes from 'prop-types'
 import { reduxForm } from 'redux-form';
 import TagListWizard0 from './TagListWizard0';
@@ -16,7 +17,8 @@ class TagListWizard extends Component {
             tagListWizardProgress: 0,
             videoList: [],
             videoTitle: '',
-            wholeListOfTags: []
+            wholeListOfTags: [],
+            letterCount: 0
         }
 
         this.getRelatedVideos = this.getRelatedVideos.bind(this);
@@ -42,10 +44,20 @@ class TagListWizard extends Component {
 
     getWholeListOfTags(listOfVideoIds){
         let currentComponent = this;
+
         axios.get(`/api/taglists/gatherTagLists/${listOfVideoIds}`)
-        .then(function (wholeListOfTags) {
+        .then(function ({data}) {
+            let newData = Object.values(data[0])
+            let listOfTags = [newData[0], ...newData[1]]
+
+            let x = listOfTags.toString().replace(/,/g,'');
+            x = x.replace(/\s/g,'aaa')
+            console.log(x)
+            x = x.replace(/[^a-zA-Z]/g, '').length;
+            console.log(typeof(listOfTags))
             currentComponent.setState({
-                wholeListOfTags: wholeListOfTags.data
+                wholeListOfTags: listOfTags,
+                letterCount: x
             })
 
         })
@@ -71,6 +83,7 @@ class TagListWizard extends Component {
                         onCancel={() => this.setState({ tagListWizardProgress: this.state.tagListWizardProgress - 1 })}
                         getWholeListOfTagsHandler={this.getWholeListOfTags}
                         wholeListOfTags={this.state.wholeListOfTags}
+                        letterCount={this.state.letterCount}
                     >
 
                     </TagListWizard2>
