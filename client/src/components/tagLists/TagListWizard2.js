@@ -99,9 +99,9 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
             
             <form className='row'>
 
-                <p className="flow-text">{letterCount}</p>
-                {console.log(wholeListOfTags)}
-                
+                <p className="flow-text" style={{fontWeight:'800'}}>Number of characters in this list: {letterCount}</p>
+                <p>Youtube takes up to around 500</p>
+                <h3 style={{fontFamily:'var(--bitter)'}}>Copy and paste they tags you want.</h3>
                 <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
 
                 <p>{tags}</p>

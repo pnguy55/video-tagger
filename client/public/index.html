@@ -31,7 +31,20 @@
       }
       .card-checkbox > span {
         display: flex!important;
+        font-size: 1.3rem!important;
         height: 9rem!important;
+        align-items: center;
+        text-align: center;
+      }
+      [type="checkbox"]+span:not(.lever):before, [type="checkbox"]:not(.filled-in)+span:not(.lever):after{
+        top: auto!important;
+        width: 30px!important;
+        height: 30px!important;
+      }
+      [type="checkbox"]:checked+span:not(.lever):before{
+        top: auto!important;
+        width: 16px!important;
+        height: 37px!important;
       }
       .soft-outter{
         -webkit-box-shadow: -6px -6px 26px 0px rgba(255,255,255,.5);

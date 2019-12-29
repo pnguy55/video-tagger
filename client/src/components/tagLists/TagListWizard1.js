@@ -60,7 +60,7 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
                             <button className='row btn red darken-4' type="button"><span className="col s9" style={{}}>Watch</span><i className='material-icons right col s3'>open_in_new</i></button>
                         </YoutubeModal>
                                                                 
-                        <label className='row card-checkbox'>
+                        <label className='row card-checkbox' style={{display:'flex', alignItems:'center'}}>
                             <Field name={videoId} id={videoId} component='input' type='checkbox'></Field>
                             <span className='flow-text col s12 black-text'>{title}</span>
                         </label>
