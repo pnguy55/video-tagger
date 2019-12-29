@@ -30,7 +30,7 @@ class TagListWizard extends Component {
 
         axios.get(`/api/taglists/gatherVideoList/${videoTitle}`)
         .then(function (videoList) {
-            console.log(videoList)
+
             currentComponent.setState({
                 videoList
             })
@@ -57,9 +57,9 @@ class TagListWizard extends Component {
 
             let x = listOfTags.toString().replace(/,/g,'');
             x = x.replace(/\s/g,'aaa')
-            console.log(x)
+
             x = x.replace(/[^a-zA-Z]/g, '').length;
-            console.log(typeof(listOfTags))
+
             currentComponent.setState({
                 wholeListOfTags: listOfTags,
                 letterCount: x

@@ -32,7 +32,7 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
         return(
             <div className='row'>
                 <div className='soft-outter btn-wrapper col s5 offset-s1 m4 offset-m1 l3 offset-l2'>
-                    <a style={{height:'2rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} className="soft-inner black-text darken-3 right" href='/'>
+                    <a style={{height:'2rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} className="soft-inner black-text right" href='/'>
                         Back
                     </a>
                 </div>
