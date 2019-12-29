@@ -44,7 +44,6 @@ class TagListWizard extends Component {
         let currentComponent = this;
         axios.get(`/api/taglists/gatherTagLists/${listOfVideoIds}`)
         .then(function (wholeListOfTags) {
-            console.log(wholeListOfTags.data)
             currentComponent.setState({
                 wholeListOfTags: wholeListOfTags.data
             })

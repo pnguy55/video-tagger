@@ -12,19 +12,23 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
 
     useEffect(() => {
 
-        let videoKeys = Object.keys(formValues);
-        let videoCounter = 0;
-        let videoIdList= _.map(formValues, (video) => {
-            if (video) {
-                videoCounter++;
-                return videoKeys[videoCounter];
+        let videoIdList = Object.keys(formValues);
+        let videoIdValues = Object.values(formValues);
+        let videoIdListLength = videoIdList.length;
+
+        videoIdList.splice(0,1);
+        videoIdValues.splice(0,1);
+
+
+
+        for(let i=0; i< videoIdListLength; i++){
+            if(!videoIdValues[i]){
+                videoIdList[i] = '';
             }
-            else return ''
-        })
-        videoIdList.pop();
-        videoIdList = videoIdList.filter((videoId) => {return videoId !== '' && videoId !== undefined})
-        videoIdList = videoIdList.join('+').toString(); 
-        getWholeListOfTagsHandler(videoIdList)
+        }
+
+        getWholeListOfTagsHandler(videoIdList.filter((videoId) => {return videoId !== ''}).join('+').toString())
+        
     }, [formValues]);
 
 
@@ -58,7 +62,7 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
         const listOfTags = _.map(wholeListOfTags, ({channelTitle, tags}) => {
             return `${channelTitle}, ${tags.join(',')}`
         });
-        
+
         return listOfTags.join(', ')
     }
 
@@ -71,8 +75,10 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
     const tagBubbler = (listOfTags) => {
         const listOfTagBubbles = _.map(listOfTags, (tag) => {
             return (
-                <div key={tag} className='light-green accent-2' style={{display:'flex', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
-                    <div className='flow-text' style={{marginRight:'2px'}}>{tag}</div><i className='material-icons'>highlight_off</i>
+                <div key={tag} className='soft-outter' style={{display:'flex',marginRight:'2px', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
+                    <div className='soft-inner' style={{padding:'3px'}}>
+                        <div className='flow-text' style={{padding:'2px',borderRadius:'20px', background:'var(--tagBubble)'}}>{tag}</div>
+                    </div>
                 </div>
             )
         })
@@ -94,7 +100,10 @@ const TagListWizard2 = ({ onCancel, formValues, submitTagList, history, getWhole
             <form className='row'>
 
                 <p className="flow-text">{letterCounter(tagLister(wholeListOfTags))}</p>
+                {console.log(wholeListOfTags)}
                 <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(tagLister(wholeListOfTags).split(','))}</div>
+                {console.log(tagLister(wholeListOfTags).split(','))}
+                <p>{tags}</p>
                 <div className='container'>{form_buttons()}</div>
             </form>
             
