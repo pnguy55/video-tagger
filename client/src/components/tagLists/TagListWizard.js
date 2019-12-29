@@ -47,8 +47,13 @@ class TagListWizard extends Component {
 
         axios.get(`/api/taglists/gatherTagLists/${listOfVideoIds}`)
         .then(function ({data}) {
-            let newData = Object.values(data[0])
-            let listOfTags = [newData[0], ...newData[1]]
+            
+            let listOfTags = []
+            let newData;
+            for (let i=0; i<data.length; i++){
+                newData = Object.values(data[i])
+                listOfTags = [...listOfTags, newData[0], ...newData[1]]
+            }
 
             let x = listOfTags.toString().replace(/,/g,'');
             x = x.replace(/\s/g,'aaa')
