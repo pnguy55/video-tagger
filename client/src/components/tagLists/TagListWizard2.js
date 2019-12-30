@@ -115,7 +115,7 @@ const TagListWizard2 = ({
                 <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTagBubbles===''? <span className='red-text'>You haven't picked any tags yet!</span> : listOfChosenTagBubbles}</div>
 
                 <h5 style={{fontFamily:'var(--bitter)'}}>Choose the tags you like.<i className='material-icons'>arrow_drop_down</i></h5>
-                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
+                <div style={{display:'flex',flexWrap:'wrap', width:'100%', marginBottom:'1rem'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
                 
                 <div className='container'>{form_buttons()}</div>
             </form>
