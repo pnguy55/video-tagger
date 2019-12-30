@@ -18,13 +18,14 @@ class TagListWizard extends Component {
             videoList: [],
             videoTitle: '',
             wholeListOfTags: [],
-            listOfRemovedTags: [],
+            listOfChosenTags: [],
+            listOfChosenTagBubbles: '',
             letterCount: 0
         }
 
         this.getRelatedVideos = this.getRelatedVideos.bind(this);
         this.getWholeListOfTags = this.getWholeListOfTags.bind(this);
-        this.removeTagFromList = this.removeTagFromList.bind(this);
+        this.chooseTagFromList = this.chooseTagFromList.bind(this);
     }
 
     getRelatedVideos(videoTitle){
@@ -57,14 +58,8 @@ class TagListWizard extends Component {
                 listOfTags = [...listOfTags, newData[0], ...newData[1]]
             }
 
-            let x = listOfTags.toString().replace(/,/g,'');
-            x = x.replace(/\s/g,'aaa')
-
-            x = x.replace(/[^a-zA-Z]/g, '').length;
-
             currentComponent.setState({
-                wholeListOfTags: listOfTags,
-                letterCount: x
+                wholeListOfTags: listOfTags
             })
 
         })
@@ -73,12 +68,47 @@ class TagListWizard extends Component {
         })
     }
 
-    removeTagFromList(tagToRemove){
+    chooseTagFromList(chosenTag){
+        let currentComponent = this;
         this.setState({
-            wholeListOfTags: this.state.wholeListOfTags.filter((tag) => {tag !== tagToRemove}),
-            listOfRemovedTags: this.state.wholeListOfTags.filter((tag) => {tag === tagToRemove})
+            wholeListOfTags: this.state.wholeListOfTags.filter((tag) => tag !== chosenTag),
+            listOfChosenTags: [...this.state.listOfChosenTags, this.state.wholeListOfTags.filter((tag) => tag === chosenTag)]
+        }, () => {
+                let listOfTagBubbles;
+                if(currentComponent.state.listOfChosenTags !== undefined){
+                    listOfTagBubbles = currentComponent.state.listOfChosenTags.map(tag => {
+                        return (
+                            <div key={tag} className='soft-outter' style={{display:'flex',marginRight:'2px', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
+                                <div className='soft-inner' style={{padding:'3px'}}>
+                                    <div className='flow-text' style={{padding:'2px',borderRadius:'20px', background:'var(--tagBubble)'}}>{tag},</div>
+                                </div>
+                            </div>
+                        )
+                    })
+                    
+                }
+                else listOfTagBubbles = '';
+
+                let x = currentComponent.state.listOfChosenTags.toString().replace(/,/g,'');
+                x = x.replace(/\s/g,'aaa')
+    
+                x = x.replace(/[^a-zA-Z]/g, '').length;
+        
+                this.setState({
+                    listOfChosenTagBubbles: listOfTagBubbles,
+                    letterCount: x
+                }, () => {})
+                
+
         })
     }
+
+    // addTagToList(tagToAdd){
+    //     this.setState({
+    //         wholeListOfTags: this.state.wholeListOfTags.push(tagToAdd),
+            
+    //     })
+    // }
 
     renderContent() {
         switch(this.state.tagListWizardProgress){
@@ -96,9 +126,9 @@ class TagListWizard extends Component {
                     <TagListWizard2
                         onCancel={() => this.setState({ tagListWizardProgress: this.state.tagListWizardProgress - 1 })}
                         getWholeListOfTagsHandler={this.getWholeListOfTags}
-                        removeTagFromListHandler={this.removeTagFromList}
+                        chooseTagFromListHandler={this.chooseTagFromList}
                         wholeListOfTags={this.state.wholeListOfTags}
-                        listOfRemovedTags={this.listOfRemovedTags}
+                        listOfChosenTagBubbles={this.state.listOfChosenTagBubbles}
                         letterCount={this.state.letterCount}
 
                     >

@@ -9,8 +9,8 @@ import * as actions from '../../actions/index';
 const TagListWizard2 = ({ 
         onCancel, 
         formValues, 
-        listOfRemovedTags, 
-        removeTagFromListHandler, 
+        listOfChosenTagBubbles,
+        chooseTagFromListHandler,
         getWholeListOfTagsHandler, 
         wholeListOfTags, 
         letterCount 
@@ -34,9 +34,12 @@ const TagListWizard2 = ({
         }
 
         getWholeListOfTagsHandler(videoIdList.filter((videoId) => {return videoId !== ''}).join('+').toString())
-        
+        window.scrollTo(0, 0)
     }, [formValues]);
 
+    // useEffect(() => {
+
+    // }, [listOfRemovedTagBubbles])
 
     const reviewFields = _.map(formFields, ({ name, label }) => {
         return (
@@ -83,7 +86,7 @@ const TagListWizard2 = ({
             return (
                 <div key={tag} className='soft-outter' style={{display:'flex',marginRight:'2px', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
                     <div className='soft-inner' style={{padding:'3px'}}>
-                        <div onClick={()=>{removeTagFromListHandler(tag)}} className='flow-text' style={{padding:'2px',borderRadius:'20px', background:'var(--tagBubble)'}}>{tag},</div>
+                        <div onClick={()=>{chooseTagFromListHandler(tag)}} className='flow-text' style={{padding:'2px',borderRadius:'20px'}}>{tag},</div>
                     </div>
                 </div>
             )
@@ -91,24 +94,29 @@ const TagListWizard2 = ({
         return listOfTagBubbles;
 
     }
+
+    
   
 
     return (
         <div className='container'>
-            <h5 className='col s12 m6 offset-m3 l4 offset-l4'>Based on your title</h5>
+            {/* <h5 className='col s12 m6 offset-m3 l4 offset-l4'>Based on your title</h5>
             <div>
                 <div>
                     {reviewFields}
                 </div>
-            </div>   
+            </div>    */}
             <form className='row'>
 
-                <p className="flow-text" style={{fontWeight:'800'}}>Number of characters in this list: {letterCount}</p>
-                <p>Youtube takes up to around 500</p>
-                <h5 style={{fontFamily:'var(--bitter)'}}>Copy and paste the tags you like.</h5>
-                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
+                <p className="flow-text" style={{fontWeight:'800'}}>Tag-list length: {letterCount}</p>
+                <p style={{marginTop:'-1rem'}}>Choose up to 500ish</p>
 
-                <p>{tags}</p>
+                <h5 style={{fontFamily:'var(--bitter)'}}>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5>
+                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTagBubbles===''? <span className='red-text'>You haven't picked any tags yet!</span> : listOfChosenTagBubbles}</div>
+
+                <h5 style={{fontFamily:'var(--bitter)'}}>Choose the tags you like.<i className='material-icons'>arrow_drop_down</i></h5>
+                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
+                
                 <div className='container'>{form_buttons()}</div>
             </form>
             
