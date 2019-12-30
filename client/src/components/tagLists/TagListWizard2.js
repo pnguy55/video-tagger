@@ -107,7 +107,7 @@ const TagListWizard2 = ({
                 </div>
             </div>    */}
             <form className='row'>
-
+                <h5 style={{fontWeight:'800'}}>Choose some tags, then copy and paste!</h5>
                 <p className="flow-text" style={{fontWeight:'800'}}>Tag-list length: {letterCount}</p>
                 <p style={{marginTop:'-1rem'}}>Choose up to 500ish</p>
 
