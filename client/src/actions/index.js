@@ -8,10 +8,10 @@ export const fetchUser = () => async dispatch => {
 };
 
 
-export const submitTagList = (values, history) => async dispatch => {
-    const res = await axios.post('/api/tagLists', values);
+export const submitTagList = (values,title) => async dispatch => {
+    console.log(values)
+    const res = await axios.post('/api/tagLists', { title, tags: values});
     // pushing to history for redirect purposes
-    history.push('/tagLists');
     dispatch({ type: FETCH_USER, payload: res.data });
 };
 

@@ -30,7 +30,7 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <nav className='red darken-4 lighten-1'>
+                <nav className='red darken-4'>
                     <div className="nav-wrapper">
                         <a href='/'
                         className="brand-logo"

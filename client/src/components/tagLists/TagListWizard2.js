@@ -4,16 +4,21 @@ import { connect } from 'react-redux';
 import formFields from './formFields-step-1';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions/index';
+import { reduxForm } from 'redux-form';
+import renderFieldTagListName from './renderFieldTagListName'
 
 
-const TagListWizard2 = ({ 
+let TagListWizard2 = ({ 
+        auth,
         onCancel, 
         formValues, 
+        listOfChosenTags,
         listOfChosenTagBubbles,
         chooseTagFromListHandler,
         getWholeListOfTagsHandler, 
         wholeListOfTags, 
-        letterCount 
+        letterCount,
+        submitTagList
     }) => {
 
     useEffect(() => {
@@ -49,6 +54,7 @@ const TagListWizard2 = ({
         );
     })
 
+
     const form_buttons = () => {
         return(
             <div className='row'>
@@ -57,12 +63,24 @@ const TagListWizard2 = ({
                         Back
                     </button>
                 </div>
+
+                {auth ?  
                 <div className='soft-outter btn-wrapper col s5 offset-s1 m4 offset-m3 l3 offset-l2'>
-                    <button style={{height:'2rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} onClick={() => getWholeListOfTagsHandler(formValues['title'])} className="soft-inner right black-text">
-                        Next
-                        <i className="material-icons">arrow_forward</i>
+                    <button type='button' style={{height:'2rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} onClick={() => {console.log(listOfChosenTags);submitTagList(listOfChosenTags, formValues.title)}} className="soft-inner right black-text">
+                        Save
+                        <i className="material-icons">save</i>
                     </button>
                 </div>
+                : 
+                <div className='soft-outter btn-wrapper col s5 offset-s1 m4 offset-m3 l3 offset-l2'>
+                    <a style={{height:'10rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} href='/auth/google' className="soft-inner right black-text">
+                        <div className='red darken-4 flex-column' style={{fontSize:'1.25rem',width:'100%', height:'100%', padding:'3px', margin:'2px', borderRadius:'20px',textAlign:'center'}}>
+                            Login to Google to save (progress will be lost)
+                            <i className="material-icons">save</i>
+                        </div>
+                    </a>
+                </div>
+                }
             </div>
         )
     }
@@ -100,12 +118,11 @@ const TagListWizard2 = ({
 
     return (
         <div className='container'>
-            {/* <h5 className='col s12 m6 offset-m3 l4 offset-l4'>Based on your title</h5>
             <div>
                 <div>
-                    {reviewFields}
+                    {renderFieldTagListName()}
                 </div>
-            </div>    */}
+            </div>   
             <form className='row'>
                 <h5 style={{fontWeight:'800'}}>Choose some tags, then copy and paste!</h5>
                 <p className="flow-text" style={{fontWeight:'800'}}>Tag-list length: {letterCount}</p>
@@ -127,8 +144,18 @@ const TagListWizard2 = ({
 
 function mapStateToProps(state) {
     return {
+        auth: state.auth,
         formValues: state.form.tagListWizard.values
     };
 }
+
+TagListWizard2 = connect(
+    mapStateToProps,
+    actions
+)(TagListWizard2)
+
 // we are using withRouter to redirect
-export default connect(mapStateToProps, actions)(withRouter(TagListWizard2));
+export default reduxForm({
+    form: 'tagListWizard',
+    destroyOnUnmount: false
+})(TagListWizard2);

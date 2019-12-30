@@ -72,7 +72,7 @@ class TagListWizard extends Component {
         let currentComponent = this;
         this.setState({
             wholeListOfTags: this.state.wholeListOfTags.filter((tag) => tag !== chosenTag),
-            listOfChosenTags: [...this.state.listOfChosenTags, this.state.wholeListOfTags.filter((tag) => tag === chosenTag)]
+            listOfChosenTags: [...this.state.listOfChosenTags, ...this.state.wholeListOfTags.filter((tag) => tag === chosenTag)]
         }, () => {
                 let listOfTagBubbles;
                 if(currentComponent.state.listOfChosenTags !== undefined){
@@ -128,6 +128,7 @@ class TagListWizard extends Component {
                         getWholeListOfTagsHandler={this.getWholeListOfTags}
                         chooseTagFromListHandler={this.chooseTagFromList}
                         wholeListOfTags={this.state.wholeListOfTags}
+                        listOfChosenTags={this.state.listOfChosenTags}
                         listOfChosenTagBubbles={this.state.listOfChosenTagBubbles}
                         letterCount={this.state.letterCount}
 

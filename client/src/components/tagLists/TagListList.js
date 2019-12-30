@@ -7,25 +7,27 @@ class TagListList extends Component {
 
     componentDidMount() {
         this.props.fetchTagLists();
-    }
 
-    componentDidUpdate() {
-        this.props.fetchTagLists();
     }
 
     renderTagListList() {
+        console.log(this.props)
         return this.props.tagLists.reverse().map(tagList => {
             return (
                 <div className="card blue-grey darken-1" key={tagList._id}>
                     <div className="card-content white-text">
                         <span className="card-title">{tagList.title}</span>
-                        <p>{tagList.tags}</p>
+                        <ul>{tagList.tags.map((tag)=>{
+                            return(
+                                <li key={tag}>{tag}</li>
+                            );
+                        })}</ul>
                         <p className="right">
                             Date Created: {new Date(tagList.dateCreated).toLocaleDateString()}
                         </p>
                     </div>
                     <div className="card-action">
-                        <div className="btn red" onClick={() => this.props.deleteTagList(tagList._id)}> Delete Tag List?</div>
+                        <div className="btn red" onClick={() => {this.props.deleteTagList(tagList._id);this.props.fetchTagLists();}}> Delete Tag List?</div>
                     </div>
                 </div>
             );
@@ -44,7 +46,7 @@ class TagListList extends Component {
 function mapStateToProps(state) {
     // we declared the state piece's name in auth reducer
     return { 
-        tagLists: state.tagLists
+        tagLists: [...state.tagLists]
     }
 }
 

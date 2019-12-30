@@ -32,6 +32,7 @@ module.exports = app => {
     })
 
     app.post('/api/tagLists', requireLogin, async (req, res) => {
+        console.log(req.body)
         const { title, tags } = req.body;
 
         const tagList = new TagList({
@@ -43,7 +44,7 @@ module.exports = app => {
 
         try {
             await tagList.save();
-            res.send();
+            res.status(200)
 
         } catch (err) {
             res.status(504);
