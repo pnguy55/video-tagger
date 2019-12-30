@@ -18,11 +18,13 @@ class TagListWizard extends Component {
             videoList: [],
             videoTitle: '',
             wholeListOfTags: [],
+            listOfRemovedTags: [],
             letterCount: 0
         }
 
         this.getRelatedVideos = this.getRelatedVideos.bind(this);
         this.getWholeListOfTags = this.getWholeListOfTags.bind(this);
+        this.removeTagFromList = this.removeTagFromList.bind(this);
     }
 
     getRelatedVideos(videoTitle){
@@ -71,6 +73,13 @@ class TagListWizard extends Component {
         })
     }
 
+    removeTagFromList(tagToRemove){
+        this.setState({
+            wholeListOfTags: this.state.wholeListOfTags.filter((tag) => {tag !== tagToRemove}),
+            listOfRemovedTags: this.state.wholeListOfTags.filter((tag) => {tag === tagToRemove})
+        })
+    }
+
     renderContent() {
         switch(this.state.tagListWizardProgress){
             case 1:
@@ -87,8 +96,11 @@ class TagListWizard extends Component {
                     <TagListWizard2
                         onCancel={() => this.setState({ tagListWizardProgress: this.state.tagListWizardProgress - 1 })}
                         getWholeListOfTagsHandler={this.getWholeListOfTags}
+                        removeTagFromListHandler={this.removeTagFromList}
                         wholeListOfTags={this.state.wholeListOfTags}
+                        listOfRemovedTags={this.listOfRemovedTags}
                         letterCount={this.state.letterCount}
+
                     >
 
                     </TagListWizard2>
