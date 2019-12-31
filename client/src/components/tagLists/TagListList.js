@@ -11,23 +11,34 @@ class TagListList extends Component {
     }
 
     renderTagListList() {
-        console.log(this.props)
+        let i=0;
         return this.props.tagLists.reverse().map(tagList => {
             return (
-                <div className="card blue-grey darken-1" key={tagList._id}>
-                    <div className="card-content white-text">
-                        <span className="card-title">{tagList.title}</span>
-                        <ul>{tagList.tags.map((tag)=>{
-                            return(
-                                <li key={tag}>{tag}</li>
-                            );
-                        })}</ul>
-                        <p className="right">
-                            Date Created: {new Date(tagList.dateCreated).toLocaleDateString()}
-                        </p>
+                <div key={i++} id='card-list' className='container'>
+                    <div className='row soft-outter'>
+                        <div className="col s12 soft-inner card" key={tagList._id}>
+                            <div className="card-content">
+                                <h5 className="card-title">{tagList.title}</h5>
+                                <div className='max-width'>{tagList.tags.map((tag)=>{
+                                    return(
+                                        <div key={tag} className='soft-outter tag-bubble-wrap' style={{}}>
+                                            <div className='soft-inner'>
+                                                <div className='flow-text chosen tag-bubble' style={{}}>{tag},</div>
+                                            </div>
+                                        </div>
+                                    );
+                                })}</div>
+                                <p className="right">
+                                    Date Created: {new Date(tagList.dateCreated).toLocaleDateString()}
+                                </p>
+                            </div>
+                            <div className="card-action flex-right">
+                                <div className="btn red darken-4" onClick={() => {this.props.deleteTagList(tagList._id);this.props.fetchTagLists();}}> Delete Tag List?</div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="card-action">
-                        <div className="btn red" onClick={() => {this.props.deleteTagList(tagList._id);this.props.fetchTagLists();}}> Delete Tag List?</div>
+                    <div className='row max-width'>
+                            <div className='divider'></div>
                     </div>
                 </div>
             );
@@ -36,7 +47,8 @@ class TagListList extends Component {
     render() {
         return (
             <div>
-                {this.renderTagListList()}
+                <h4 style={{fontWeight:'800', textAlign:'center'}}>Your Saved Lists</h4>
+                <div style={{marginTop:'1rem'}}>{this.renderTagListList()}</div>
             </div>
         )
     }

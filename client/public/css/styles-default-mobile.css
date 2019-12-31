@@ -1,0 +1,140 @@
+:root{
+    --bitter: 'Bitter', serif;
+    --raleway: 'Raleway', sans-serif;
+    --softBackground: #F0EDEF;
+    --tagBubble: rgb(39, 229, 83);
+    --redDark: #6B0808;
+    --greenDark: #116625;
+    --removedTagBubble: rgb(203, 63, 40);
+}
+body{
+    font-family: var(--raleway);
+    background-color: var(--softBackground);
+}
+#root{
+    max-width: 100vw;
+    overflow-x: hidden;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--bitter);
+}
+/* Start of appwide classes */
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+/* End of appwide classes */
+
+
+/* Neumorphism style classes start */
+.soft-outter{
+    -webkit-box-shadow: -6px -6px 26px 0px rgba(255,255,255,.5);
+    -moz-box-shadow: -6px -6px 26px 0px rgba(255,255,255,.5);
+    box-shadow: -6px -6px 16px 0px rgba(255,255,255,.5);
+    border-radius: 12px;
+    padding: 0px!important;
+}
+.soft-inner{
+    -webkit-box-shadow: 6px 6px 16px 0px rgba(209,205,199,0.5)!important;
+    -moz-box-shadow: 6px 6px 16px 0px rgba(209,205,199,0.5)!important;
+    box-shadow: 6px 6px 16px 0px rgba(209,205,199,0.5)!important;
+    border-radius: 12px!important;
+    background-color: var(--softBackground)!important;
+    width: 100%!important;
+    height: 100%;
+    border-style: initial;
+}
+.soft-background{
+    background-color: var(--softBackground);
+}
+.soft-inset-outter{
+    -webkit-box-shadow: inset 6px 6px 16px 0px rgba(0,0,0,.5);
+    -moz-box-shadow: inset 6px 6px 16px 0px rgba(0,0,0,.5);
+    box-shadow: inset 6px 6px 16px 0px rgba(0,0,0,.5);
+}
+.soft-inset-inner{
+    -webkit-box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
+    -moz-box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
+    box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
+}
+.max-width{
+    width: 100%;
+}
+.flex-right{
+    display: flex;
+    justify-content: flex-end;
+}
+/* Neumorphism style classes end */
+
+/* Tag bubbles styles start */
+.tag-bubble{
+    padding:3px 6px;
+    border-radius:12px;
+    background:var(--tagBubble);
+}
+.tag-bubble-wrap{
+    display:inline-block;
+    margin-right:2px;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:space-evenly;
+    border-radius:12px;
+    padding:2px 3px;
+    margin:1px 2px;
+    width:fit-content;
+}
+/* Tag bubbles styles end */
+
+/* Form Wizard Styles start */
+.card-checkbox{
+    display: flex;
+}
+.card-checkbox > span {
+    display: flex!important;
+    font-size: 1.3rem!important;
+    height: 9rem!important;
+    align-items: center;
+    text-align: center;
+}
+[type="checkbox"]+span:not(.lever):before, [type="checkbox"]:not(.filled-in)+span:not(.lever):after{
+    top: auto!important;
+    width: 30px!important;
+    height: 30px!important;
+}
+[type="checkbox"]:checked+span:not(.lever):before{
+    top: auto!important;
+    width: 16px!important;
+    height: 37px!important;
+}
+
+button:focus{
+    -webkit-box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
+    -moz-box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
+    box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
+    border-width: 3px 0px 0px 3px;
+    border-color:  rgba(39, 229, 83,.5);
+    border-style: inset;
+    background: var(--softBackground)!important;
+}
+input{
+    font-size: 3rem!important;
+    height: 5rem!important;
+    border-radius: 20px!important;
+    background-color: #FCFAFB!important;
+
+}
+input:focus{
+    border-bottom: 1px solid var(--tagBubble)!important;
+    box-shadow: 0 1px 0 0 var(--tagBubble)!important;
+}
+/* Form Wizard Styles End */
+
+/* Taglist list styles start */
+.divider{
+    padding:1px;
+    background:#000000;
+    border-radius:20px;
+}
+/* Taglist list styles end */
