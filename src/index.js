@@ -1,4 +1,3 @@
-var sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -8,6 +7,7 @@ require('../models/User');
 require('../models/TagList');
 require('../models/Email');
 require('../services/passport');
+var sslRedirect = require('heroku-ssl-redirect');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
