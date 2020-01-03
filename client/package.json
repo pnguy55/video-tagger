@@ -5,6 +5,7 @@
   "dependencies": {
     "@babel/runtime": "^7.7.2",
     "axios": "^0.19.0",
+    "heroku-ssl-redirect": "0.0.4",
     "http-proxy-middleware": "^0.20.0",
     "materialize-css": "^1.0.0",
     "react": "^16.12.0",
