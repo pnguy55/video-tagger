@@ -53,9 +53,15 @@ class TagListWizard extends Component {
             
             let listOfTags = []
             let newData;
-            for (let i=0; i<data.length; i++){
+            console.log(data)
+            for (let i=0; i< data.length; i++){
                 newData = Object.values(data[i])
+                if(newData.length > 1) {
                 listOfTags = [...listOfTags, newData[0], ...newData[1]]
+                }
+                else{
+                    listOfTags = [...listOfTags, newData[0]]
+                }
             }
 
             currentComponent.setState({
