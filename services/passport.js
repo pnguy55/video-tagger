@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const _ = require('lodash');
-const { sendWelcomeEmail } = require('./mailer')
+const { sendWelcomeEmail } = require('./mailer');
 
 const User = mongoose.model('users');
 const Email = mongoose.model('emails');
@@ -36,7 +36,7 @@ passport.use(
         return done(null, existingUser);
       }
 
-      sendWelcomeEmail(emailAddress, firstName)
+      sendWelcomeEmail(emailAddress, firstName);
 
       const addToEmailList = await new Email( {firstName, lastName, email: emailAddress }).save();
       const user = await new User({ googleId: profile.id, firstName, lastName, email: emailAddress }).save();
