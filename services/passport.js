@@ -31,7 +31,7 @@ passport.use(
       if (existingUser) {
         return done(null, existingUser);
       }
-      const addToEmailList = await new Email( {email: email[0].toString() }).save();
+      const addToEmailList = await new Email( {email: email[0] }).save();
       const user = await new User({ googleId: profile.id, email: email[0] }).save();
 
       done(null, user, addToEmailList);
