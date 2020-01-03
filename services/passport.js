@@ -2,7 +2,7 @@ const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const mongoose = require('mongoose');
 const _ = require('lodash');
-const { sendWelcomeEmail } = require('../services/mailer')
+const { sendWelcomeEmail } = require('./mailer')
 
 const User = mongoose.model('users');
 const Email = mongoose.model('emails');
