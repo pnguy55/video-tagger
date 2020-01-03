@@ -1,3 +1,4 @@
+const sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -12,6 +13,9 @@ mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const app = express();
+
+// enable ssl redirect
+app.use(sslRedirect());
 
 // this line will ensure that any kind of request body is parsed and assigned to req.body
 app.use(bodyParser.json());
