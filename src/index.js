@@ -1,4 +1,4 @@
-const sslRedirect = require('heroku-ssl-redirect');
+var sslRedirect = require('heroku-ssl-redirect');
 const express = require('express');
 const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
@@ -16,7 +16,6 @@ const app = express();
 
 // enable ssl redirect
 app.use(sslRedirect());
-
 // this line will ensure that any kind of request body is parsed and assigned to req.body
 app.use(bodyParser.json());
 
@@ -29,6 +28,8 @@ app.use(
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+
 
 require('../routes/authRoutes')(app);
 // because the route files return functions, they are immediately called by app
