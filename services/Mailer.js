@@ -24,6 +24,4 @@ const sendWelcomeEmail = (email, firstName) => {
     })
 }
 
-module.exports = {
-    sendWelcomeEmail
-}
+module.exports =  sendWelcomeEmail;
