@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const _ = require('lodash');
 
 const User = mongoose.model('users');
+const Email = mongoose.model('emails');
 
 passport.serializeUser((user, done) => {
   done(null, user.id);
@@ -27,13 +28,13 @@ passport.use(
       const existingUser = await User.findOne({ googleId: profile.id });
       const email =_.map( profile.emails, ({ value }) =>{ return value});
 
-      console.log(email[0])
       if (existingUser) {
         return done(null, existingUser);
       }
-      
+      const addToEmailList = await new Email( {email: email[0].toString() }).save();
       const user = await new User({ googleId: profile.id, email: email[0] }).save();
-      done(null, user);
+
+      done(null, user, addToEmailList);
     }
   )
 );
