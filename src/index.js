@@ -3,19 +3,20 @@ const mongoose = require('mongoose');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+var enforce = require('express-sslify');
 require('../models/User');
 require('../models/TagList');
 require('../models/Email');
 require('../services/passport');
-var sslRedirect = require('heroku-ssl-redirect');
+
 
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopology: true});
 
 const app = express();
 
-// enable ssl redirect
-app.use(sslRedirect());
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
+
 // this line will ensure that any kind of request body is parsed and assigned to req.body
 app.use(bodyParser.json());
 
