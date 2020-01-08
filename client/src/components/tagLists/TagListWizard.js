@@ -26,6 +26,7 @@ class TagListWizard extends Component {
         this.getRelatedVideos = this.getRelatedVideos.bind(this);
         this.getWholeListOfTags = this.getWholeListOfTags.bind(this);
         this.chooseTagFromList = this.chooseTagFromList.bind(this);
+        this.removeTagFromList = this.removeTagFromList.bind(this);
     }
 
     getRelatedVideos(videoTitle){
@@ -64,13 +65,24 @@ class TagListWizard extends Component {
                 }
             }
 
+            function onlyUnique(value, index, self) { 
+                return self.indexOf(value) === index;
+            }
+            
             currentComponent.setState({
-                wholeListOfTags: listOfTags
+                wholeListOfTags: listOfTags.filter( onlyUnique )
             })
 
         })
         .catch(function (error) {
             console.log(error);
+        })
+    }
+
+    removeTagFromList(tagRemove) {
+        this.setState({
+            listOfChosenTagBubbles: this.state.listOfChosenTags.splice(this.state.listOfChosenTagBubbles.indexOf({key: `${tagRemove}`}),1),
+            wholeListOfTags: [...this.state.wholeListOfTags, tagRemove]
         })
     }
 
@@ -80,20 +92,7 @@ class TagListWizard extends Component {
             wholeListOfTags: this.state.wholeListOfTags.filter((tag) => tag !== chosenTag),
             listOfChosenTags: [...this.state.listOfChosenTags, ...this.state.wholeListOfTags.filter((tag) => tag === chosenTag)]
         }, () => {
-                let listOfTagBubbles;
-                if(currentComponent.state.listOfChosenTags !== undefined){
-                    listOfTagBubbles = currentComponent.state.listOfChosenTags.map(tag => {
-                        return (
-                            <div key={tag} className='soft-outter' style={{display:'flex',marginRight:'2px', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
-                                <div className='soft-inner' style={{padding:'3px'}}>
-                                    <div className='flow-text' style={{padding:'2px',borderRadius:'20px', background:'var(--tagBubble)'}}>{tag},</div>
-                                </div>
-                            </div>
-                        )
-                    })
-                    
-                }
-                else listOfTagBubbles = '';
+                
 
                 let x = currentComponent.state.listOfChosenTags.toString().replace(/,/g,'');
                 x = x.replace(/\s/g,'aaa')
@@ -101,7 +100,6 @@ class TagListWizard extends Component {
                 x = x.replace(/[^a-zA-Z]/g, '').length;
         
                 this.setState({
-                    listOfChosenTagBubbles: listOfTagBubbles,
                     letterCount: x
                 }, () => {})
                 
@@ -135,8 +133,8 @@ class TagListWizard extends Component {
                         chooseTagFromListHandler={this.chooseTagFromList}
                         wholeListOfTags={this.state.wholeListOfTags}
                         listOfChosenTags={this.state.listOfChosenTags}
-                        listOfChosenTagBubbles={this.state.listOfChosenTagBubbles}
                         letterCount={this.state.letterCount}
+                        removeTagFromListHandler={this.removeTagFromList}
 
                     >
 

@@ -15,7 +15,8 @@ let TagListWizard2 = ({
         listOfChosenTags,
         listOfChosenTagBubbles,
         chooseTagFromListHandler,
-        getWholeListOfTagsHandler, 
+        getWholeListOfTagsHandler,
+        removeTagFromListHandler, 
         wholeListOfTags, 
         letterCount,
         submitTagList
@@ -114,6 +115,24 @@ let TagListWizard2 = ({
 
     }
 
+    const chosenTagBubbler = (listOfTags) => {
+        let listOfTagBubbles;
+                if(listOfTags !== undefined){
+                    listOfTagBubbles = listOfTags.map(tag => {
+                        return (
+                            <div key={tag} onClick={()=> {removeTagFromListHandler(tag)}}className='soft-outter' style={{display:'flex',marginRight:'2px', flexWrap:'wrap',alignItems:'center',justifyContent:'space-evenly',borderRadius:'20px', padding:'2px 3px',margin:'1px 2px'}}>
+                                <div className='soft-inner' style={{padding:'3px'}}>
+                                    <div className='flow-text' style={{padding:'2px',borderRadius:'20px', background:'var(--tagBubble)'}}>{tag},</div>
+                                </div>
+                            </div>
+                        )
+                    })
+                    
+                }
+                else listOfTagBubbles = '';
+        return listOfTagBubbles;
+    }
+
     
   
 
@@ -121,6 +140,7 @@ let TagListWizard2 = ({
         <div className='container'>
             <div>
                 <div>
+                    {console.log(listOfChosenTagBubbles)}
                     {renderFieldTagListName()}
                 </div>
             </div>   
@@ -130,7 +150,7 @@ let TagListWizard2 = ({
                 <p style={{marginTop:'-1rem'}}>Choose up to 500ish</p>
 
                 <h5 style={{fontFamily:'var(--bitter)'}}>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5>
-                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTagBubbles===''? <span className='red-text'>You haven't picked any tags yet!</span> : listOfChosenTagBubbles}</div>
+                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTags.length === 0? <span className='red-text'>You haven't picked any tags yet!</span> : chosenTagBubbler(listOfChosenTags)}</div>
 
                 <h5 style={{fontFamily:'var(--bitter)'}}>Choose the tags you like.<i className='material-icons'>arrow_drop_down</i></h5>
                 <div style={{display:'flex',flexWrap:'wrap', width:'100%', marginBottom:'1rem'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
