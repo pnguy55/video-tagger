@@ -8,8 +8,6 @@ import Landing from './Landing';
 import Dashboard from './Dashboard';
 import TagListWizard from './tagLists/TagListWizard';
 
-
-
 class App extends Component {
     componentDidMount() {
         this.props.fetchUser();

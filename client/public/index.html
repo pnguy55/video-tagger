@@ -9,6 +9,8 @@
     <link href="https://fonts.googleapis.com/css?family=Bitter|Raleway&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='./css/styles-default-mobile.css'>
     <link rel='stylesheet' media='screen and (min-width: 900px)' href='./css/styles-desktop.css'>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
     
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-155108983-1"></script>
@@ -44,38 +46,141 @@
   <body class='flex-column'>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root" style='width: 100%; height: auto; padding-bottom: 2rem;'></div>
-    <div class='soft-outter flex-column' style='max-width: 90%; width: fit-content; margin-top: 2rem;'>
-      <div class='soft-inner flex-column' style='padding: 1rem;'>
-        <h4 style="font-family:var(--bitter); font-weight:800;">4 Easy Steps</h4>
-        <h5 style="font-family:var(--bitter); font-weight:800;">to Youtube Video Tags</h5>
-        <ol class="flow-text" >
-            <li>Enter the name of your video.</li>
-            <li>Choose videos like yours.</li>
-            <li>Select the tags you like</li>
-            <li>Copy and paste to your video.</li>
-        </ol>
-        <h5 style="font-family:var(--bitter); font-weight:800;"> What is My Video tagger?</h5 style="font-family:var(--bitter); font-weight:800;">
-        <div class='container'>
-          <p class='flow-text'>
-            Youtube tags and other kinds of Youtube metadata can be so overwhelming, 
-            but it really doesn't have to be.  You can search all day online about how to get the "best"
-            tags for your videos, but at the end of the day, you and all the gurus have literally no idea whether you're grasping at
-            straws or not.  
-          </p>
-          <p class='flow-text'>
-            That's why My Video Tagger takes the tags from successful Youtube videos and lets you select from them.
-            That way, you know that the tags you're selecting from have a proven track record to work.  When you Enter
-            your video name/topic, you are presented with a list of videos in that same category.  These are literally the same videos you'd
-            be competing with when you video goes online.  So even if you don't want to use their tags, you can see what they
-            are trying to do by looking into their tag list.
-          </p>
-          <p class='flow-text'>
-            Good luck everyone!<br>
-            CodePhony
-          </p>
+    
+    
+    <style>
+      .accordion-toggle {
+        display: block;
+      }
+
+      .accordion-content {
+        display: none;
+      }
+      .accordion-master {
+        display: none;
+      }
+      .accordion-content.active {
+        display: block;
+      }
+      .accordion-master.active {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .seo-title {
+        font-family:var(--bitter);
+        font-weight:800;
+        text-decoration: none;
+        color: var(--softBackground);
+        text-align: center;
+      }
+      .title-1 {
+        font-size: 3rem;
+      }
+
+      .title-2 {
+        font-size: 2rem;
+      }
+      #seo-piece-1 {
+        border-radius: 12px 12px 0px 0px;
+      }
+      #seo-piece-2 {
+        border-radius: 12px;
+        margin-top: -2px;
+      }
+      #seo-piece-3 {
+        border-radius: 12px;
+      }
+      #seo-piece-1, #seo-piece-2, #seo-piece-3 {
+        background: var(--secondaryDark);
+        padding: 1rem;
+      }
+    </style>
+    <script>
+      // Listen for click on the document
+      document.addEventListener('click', function (event) {
+        
+        //Bail if our clicked element doesn't have the class
+        if (!event.target.classList.contains('accordion-toggle')) return;
+        
+        // Get the target content
+        var content = document.querySelector(event.target.hash);
+        if (!content) return;
+        
+        // Prevent default link behavior
+        event.preventDefault();
+        
+        if(content.classList.contains('accordion-master')){
+          // Toggle our content
+          content.classList.toggle('active');
+          return;
+        }
+
+        // If the content is already expanded, collapse it and quit
+        if (content.classList.contains('active')) {
+          content.classList.remove('active');
+          return;
+        }
+        
+        // Get all open accordion content, loop through it, and close it
+        var accordions = document.querySelectorAll('.accordion-content.active');
+        for (var i = 0; i < accordions.length; i++) {
+          accordions[i].classList.remove('active');
+        }
+        
+        // Toggle our content
+        content.classList.toggle('active');
+      })
+    </script>
+    <div class='container'>
+      <div class='row max-width'>
+        <div class='divider'></div>
+      </div>
+    </div>
+    <a href='#content-master' class='accordion-toggle'>Click Here for Info</a>
+    <div class='accordion-master' id='content-master'>
+      <div class='soft-outter flex-column' style='max-width: 90%; width: fit-content; margin-top: 2rem;'>
+        <div class='soft-inner flex-column' style='padding: 1rem;'>
+          <a id='seo-piece-1' href='#content-1' class='accordion-toggle seo-title title-1'>4 Easy Steps</a>
+          <a id='seo-piece-2' href='#content-1' class='accordion-toggle seo-title title-2'>to Youtube Video Tags</a>
+          <p style='margin-top: -.05rem;'>(Click to Expand)</p>
+          <ol class="flow-text accordion-content" id="content-1" >
+              <li>Enter the name of your video.</li>
+              <li>Choose videos like yours.</li>
+              <li>Select the tags you like</li>
+              <li>Copy and paste to your video.</li>
+          </ol>
+        </div>
+      </div>
+      <div class='soft-outter flex-column' style='max-width: 90%; width: fit-content; margin-top: 2rem;'>
+        <div class='soft-inner flex-column' style='padding: 1rem;'>
+          <a id='seo-piece-3' href='#content-2' class='accordion-toggle seo-title title-2'> What is My Video tagger?</a class='accordion-toggle'>
+          <p style='margin-top: -.05rem;'>(Click to Expand)</p style='margin-top: -1rem;'>
+          <div id='content-2' class='container accordion-content'>
+            <p class='flow-text'>
+              Youtube tags and other kinds of Youtube metadata can be so overwhelming, 
+              but it really doesn't have to be.  You can search all day online about how to get the "best"
+              tags for your videos, but at the end of the day, you and all the gurus have literally no idea whether you're grasping at
+              straws or not.  
+            </p>
+            <p class='flow-text'>
+              That's why My Video Tagger takes the tags from successful Youtube videos and lets you select from them.
+              That way, you know that the tags you're selecting from have a proven track record to work.  When you Enter
+              your video name/topic, you are presented with a list of videos in that same category.  These are literally the same videos you'd
+              be competing with when you video goes online.  So even if you don't want to use their tags, you can see what they
+              are trying to do by looking into their tag list.
+            </p>
+            <p class='flow-text'>
+              Good luck everyone!<br>
+              CodePhony
+            </p>
+          </div>
         </div>
       </div>
     </div>
+
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

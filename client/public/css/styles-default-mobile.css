@@ -2,10 +2,13 @@
     --bitter: 'Bitter', serif;
     --raleway: 'Raleway', sans-serif;
     --softBackground: #F0EDEF;
-    --tagBubble: rgb(39, 229, 83);
-    --redDark: #6B0808;
+    --tagBubble: #00D63D;
+    --secondary: #d50000;
+    --secondaryDark: #6B0808;
+    --secondaryLight: #ff5131;
     --greenDark: #116625;
     --removedTagBubble: rgb(203, 63, 40);
+    --darkText: #000000;
 }
 body{
     font-family: var(--raleway);
@@ -27,6 +30,33 @@ h1, h2, h3, h4, h5, h6 {
 }
 /* End of appwide classes */
 
+#navbar {
+    background: var(--softBackground);
+    color: var(--darkText);
+    border-bottom: 3px solid var(--secondaryDark);
+}
+
+li > .log-in-btn {
+    background: var(--secondaryDark);
+    color: var(--softBackground);    
+}
+
+.sidenav > li > .log-in-btn {
+    background: var(--secondaryDark);
+    color: var(--softBackground);    
+}
+#new-list {
+    background: var(--secondary);
+}
+li > .dash-btn {
+    background-color: var(--secondary);
+}
+li > .logout-btn {
+    background-color: var(--secondaryDark);
+}
+.sidenav > a {
+    color: var(--softBackground);
+}
 
 /* Neumorphism style classes start */
 .soft-outter{
@@ -40,8 +70,8 @@ h1, h2, h3, h4, h5, h6 {
     -webkit-box-shadow: 6px 6px 16px 0px rgba(209,205,199,0.5)!important;
     -moz-box-shadow: 6px 6px 16px 0px rgba(209,205,199,0.5)!important;
     box-shadow: 6px 6px 16px 0px rgba(209,205,199,0.5)!important;
-    border-radius: 12px!important;
-    background-color: var(--softBackground)!important;
+    border-radius: 12px;
+    background-color: var(--softBackground);
     width: 100%!important;
     height: 100%;
     border-style: initial;
@@ -108,15 +138,37 @@ h1, h2, h3, h4, h5, h6 {
     width: 16px!important;
     height: 37px!important;
 }
+[type="checkbox"]:checked+span:not(.lever):before {
+    border-right: 2px solid var(--secondary)!important;
+    border-bottom: 2px solid var(--secondary)!important;
 
+}
+.btn-soft {
+    color: #d50000;
+}
 button:focus{
     -webkit-box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
     -moz-box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
     box-shadow: inset -6px -6px 16px 0px rgba(255,255,255,0.5);
     border-width: 3px 0px 0px 3px;
-    border-color:  rgba(39, 229, 83,.5);
+    border-color: rgba(0,0,0,.5);
     border-style: inset;
-    background: var(--softBackground)!important;
+    background: var(--secondary) !important;
+    color: var(--softBackground)!important;
+}
+
+li > .dash-btn:hover, .dash-btn:focus{
+    background: var(--secondaryDark) !important;
+}
+
+.page-2-btn {
+    display:flex;
+    align-items:center;
+    justify-content:space-evenly;
+    font-size: 6rem;
+}
+.page-2-btn > i {
+    width: 75%;
 }
 input{
     font-size: 3rem!important;
@@ -126,14 +178,16 @@ input{
 
 }
 input:focus{
-    border-bottom: 1px solid var(--tagBubble)!important;
-    box-shadow: 0 1px 0 0 var(--tagBubble)!important;
+    border-bottom: 1px solid var(--secondaryLight)!important;
+    box-shadow: 0 1px 0 0 var(--secondaryLight)!important;
 }
+
+
 /* Form Wizard Styles End */
 
 /* Taglist list styles start */
 .divider{
-    padding:1px;
+    padding:1.5px;
     background:#000000;
     border-radius:20px;
 }

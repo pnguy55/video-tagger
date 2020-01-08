@@ -54,7 +54,6 @@ class TagListWizard extends Component {
             
             let listOfTags = []
             let newData;
-            console.log(data)
             for (let i=0; i< data.length; i++){
                 newData = Object.values(data[i])
                 if(newData.length > 1) {
@@ -68,7 +67,7 @@ class TagListWizard extends Component {
             function onlyUnique(value, index, self) { 
                 return self.indexOf(value) === index;
             }
-            
+
             currentComponent.setState({
                 wholeListOfTags: listOfTags.filter( onlyUnique )
             })

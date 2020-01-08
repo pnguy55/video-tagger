@@ -2,10 +2,10 @@ import _ from 'lodash';
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import formFields from './formFields-step-1';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import * as actions from '../../actions/index';
 import { reduxForm } from 'redux-form';
-import renderFieldTagListName from './renderFieldTagListName'
+import renderFieldTagListName from './renderFieldTagListName';
 
 
 let TagListWizard2 = ({ 
@@ -59,23 +59,23 @@ let TagListWizard2 = ({
     const form_buttons = () => {
         return(
             <div className='row'>
-                <div className='soft-outter btn-wrapper col s5 offset-s1 m4 offset-m1 l3 offset-l2'>
+                <div className='soft-outter btn-wrapper col s12 m4 offset-m1 l3 offset-l2' style={{marginBottom:'1rem'}}>
                     <button style={{height:'2rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} className="soft-inner black-text darken-3 right" onClick={ onCancel }>
                         Back
                     </button>
                 </div>
 
                 {auth ?  
-                <div className='soft-outter btn-wrapper col s5 offset-s1 m4 offset-m3 l3 offset-l2'>
+                <div className='soft-outter btn-wrapper col s12 m4 offset-m3 l3 offset-l2'>
                     <button type='button' style={{height:'2rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} onClick={() => {console.log(listOfChosenTags);submitTagList(listOfChosenTags, formValues.title)}} className="soft-inner right black-text">
                         Save
                         <i className="material-icons">save</i>
                     </button>
                 </div>
                 : 
-                <div className='soft-outter btn-wrapper col s5 offset-s1 m4 offset-m3 l3 offset-l2'>
-                    <a style={{height:'10rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} href='/auth/google' className="soft-inner right black-text">
-                        <div className='red darken-4 flex-column' style={{fontSize:'1.25rem',width:'100%', height:'100%', padding:'3px', margin:'2px', borderRadius:'20px',textAlign:'center'}}>
+                <div className='soft-outter btn-wrapper col s12 m4 offset-m3 l3 offset-l2'>
+                    <a style={{height:'12rem', display:'flex', alignItems:'center', justifyContent:'space-evenly'}} href='/auth/google' className="soft-inner right black-text">
+                        <div className='white-text flex-column' style={{fontSize:'1.25rem',width:'100%', height:'100%', padding:'3px', margin:'2px', borderRadius:'20px',textAlign:'center',background:'var(--secondary)'}}>
                             Login to Google to save (progress will be lost)
                             <i className="material-icons">save</i>
                         </div>
@@ -140,7 +140,6 @@ let TagListWizard2 = ({
         <div className='container'>
             <div>
                 <div>
-                    {console.log(listOfChosenTagBubbles)}
                     {renderFieldTagListName()}
                 </div>
             </div>   
@@ -148,14 +147,24 @@ let TagListWizard2 = ({
                 <h5 style={{fontWeight:'800'}}>Choose some tags, then copy and paste!</h5>
                 <p className="flow-text" style={{fontWeight:'800'}}>Tag-list length: {letterCount}</p>
                 <p style={{marginTop:'-1rem'}}>Choose up to 500ish</p>
-
-                <h5 style={{fontFamily:'var(--bitter)'}}>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5>
-                <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTags.length === 0? <span className='red-text'>You haven't picked any tags yet!</span> : chosenTagBubbler(listOfChosenTags)}</div>
-
-                <h5 style={{fontFamily:'var(--bitter)'}}>Choose the tags you like.<i className='material-icons'>arrow_drop_down</i></h5>
-                <div style={{display:'flex',flexWrap:'wrap', width:'100%', marginBottom:'1rem'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
-                
-                <div className='container'>{form_buttons()}</div>
+                <div className='soft-outter'  style={{marginBottom:'1rem'}}>
+                    <div className='soft-inner' style={{padding:'1rem'}}>
+                        <h5 style={{fontFamily:'var(--bitter)'}}>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5>
+                        <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTags.length === 0? <span className='red-text'>You haven't picked any tags yet!</span> : chosenTagBubbler(listOfChosenTags)}</div>
+                    </div>
+                </div>
+                <div className='soft-outter' style={{marginBottom:'1rem'}}>
+                    <div className='soft-inner' style={{padding:'1rem'}}>
+                        <h5 style={{fontFamily:'var(--bitter)'}}>Choose the tags you like.<i className='material-icons'>arrow_drop_down</i></h5>
+                        <div style={{display:'flex',flexWrap:'wrap', width:'100%', marginBottom:'1rem'}} className="flow-text">{tagBubbler(wholeListOfTags)}</div>
+                    </div>
+                </div>
+                <div className='container'>
+                    {form_buttons()}
+                    <ul className='flex-column' style={{listStyleType:'none'}}>
+                        <li key='1'><Link className='btn dash-btn sidenav-close' to='/tagLists'>View My Saved Lists</Link></li>
+                    </ul>
+                </div>
             </form>
             
         </div>

@@ -15,16 +15,15 @@ class Header extends Component {
             // if there is no user data
             case false:
                 return [
-                    <li key='1'><Link style={{background:'var(--greenDark)'}}className='btn' to='/'>New List</Link></li>,
-                    <li key='2'><a href='/auth/google'>Login with Google</a></li>
+                    <li key='2'><a className='log-in-btn' href='/auth/google'>Login with Google</a></li>
                 ]
             // if there is user data
             default:
                 return [
                     //satify the react key requirement
-                    <li key='1'><Link style={{background:'var(--greenDark)'}}className='btn' to='/'>New List</Link></li>,
-                    <li key='2'><Link style={{background:'var(--greenDark)'}}className='btn' to='/tagLists'>Dashboard</Link></li>,
-                    <li key='3'><a className='btn' style={{background:'var(--redDark)'}} href='/api/logout'>Logout</a></li>                    
+                    <li key='1'><Link id='new-list' className='btn sidenav-close' to='/'>New List</Link></li>,
+                    <li key='2'><Link className='btn dash-btn sidenav-close' to='/tagLists'>Dashboard</Link></li>,
+                    <li key='3'><a className='btn logout-btn sidenav-close' href='/api/logout'>Logout</a></li>                    
                 ]
         }
     }
@@ -34,14 +33,14 @@ class Header extends Component {
     render() {
         return (
             <div>
-                <nav className='red darken-4'>
+                <nav id='navbar' className=''>
                     <div className="nav-wrapper">
                         <a href='/'
-                        className="brand-logo"
-                        style={{height: '100%', display: 'flex', alignItems: 'center'}}
+                        className="brand-logo black-text"
+                        style={{height: '100%', display: 'flex', alignItems: 'center', marginLeft:'.5rem'}}
                         >
                             <img src='/yt-tagger.png' style={{height: '2rem', width: 'auto'}}></img> 
-                            Tagger
+                            MyVideoTagger
                         </a>
                         <SideNav>
                                 {this.renderContent()}

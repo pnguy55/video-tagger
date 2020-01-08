@@ -7,7 +7,7 @@ const Dashboard = () => {
         <div>
             <TagListList/>
             <div className="fixed-action-btn" style={{marginRight: '6rem'}}>
-                <Link to='/' className="btn-floating btn-large" style={{background:'var(--greenDark)'}}>
+                <Link to='/' className="btn-floating btn-large" style={{background:'var(--secondary)'}}>
                     <i  className="material-icons">add</i>
                 </Link>
             </div>

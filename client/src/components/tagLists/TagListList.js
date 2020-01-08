@@ -46,8 +46,11 @@ class TagListList extends Component {
     }
     render() {
         return (
-            <div>
+            <div className='flex-column'>
                 <h4 style={{fontWeight:'800', textAlign:'center'}}>Your Saved Lists</h4>
+                <Link to='/' className="btn btn-large" style={{background:'var(--secondary)'}}>
+                    Add a New List
+                </Link>
                 <div style={{marginTop:'1rem'}}>{this.renderTagListList()}</div>
             </div>
         )

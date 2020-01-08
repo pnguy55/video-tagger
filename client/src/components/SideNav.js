@@ -30,10 +30,10 @@ class Sidenav extends Component {
                     <a
                     href='/' 
                     className="brand-logo black-text"
-                    style={{position:'relative', height: '2rem', display: 'flex', alignItems: 'center'}}
+                    style={{position:'relative', height: '2rem', display: 'flex', alignItems: 'center', margin:'1rem 0rem'}}
                     >
                         <img src='/yt-tagger.png' style={{height: '100%', width: 'auto'}}></img> 
-                        Tagger
+                        MyVideoTagger
                     </a>
                 </div>
             </li>

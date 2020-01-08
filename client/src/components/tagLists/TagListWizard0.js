@@ -19,8 +19,8 @@ class TagListWizard0 extends Component {
                     <form onSubmit={this.props.handleSubmit(this.props.onTagListSubmit)} style={{height: '100%', width: '100%', padding: '1rem'}}>
                         {renderFields()}
                         <div className='soft-outter btn-wrapper'>
-                            <button className="soft-inner right black-text flex-column btn-soft" style={{padding:'1rem', marginBottom: '.5rem'}} type="submit">
-                                <i className="material-icons" style={{fontSize: '3rem'}}>arrow_forward</i>
+                            <button className="soft-inner right flex-column btn-soft" style={{padding:'1rem', marginBottom: '.5rem'}} type="submit">
+                                <i className="material-icons large">arrow_forward</i>
                             </button>
                         </div>
                     </form>
@@ -33,7 +33,6 @@ class TagListWizard0 extends Component {
 function validate(values) {
 
     const errors = {};
-
     _.each(formFields, ({ name }) => {
         if(!values[name]) {
             errors[name] = `You must provide a ${name}.`;
