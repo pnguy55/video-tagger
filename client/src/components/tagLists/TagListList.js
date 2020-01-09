@@ -10,6 +10,27 @@ class TagListList extends Component {
 
     }
 
+    onClick(e) {
+        e.preventDefault();
+        let x = document.getElementById("content-copy").childElementCount;
+        if ( x < 2 ) {
+            document.getElementById('content-copy').insertAdjacentHTML("afterbegin",'"Copied!"')
+        }
+    }
+
+    copyToClipboard(text) {
+        var dummy = document.createElement("textarea");
+        // to avoid breaking orgain page when copying more words
+        // cant copy when adding below this code
+        // dummy.style.display = 'none'
+        document.body.appendChild(dummy);
+        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+    }
+
     renderTagListList() {
         let i=0;
         return this.props.tagLists.reverse().map(tagList => {
@@ -28,11 +49,14 @@ class TagListList extends Component {
                                         </div>
                                     );
                                 })}</div>
+
                                 <p className="right">
                                     Date Created: {new Date(tagList.dateCreated).toLocaleDateString()}
                                 </p>
                             </div>
+
                             <div className="card-action flex-right">
+                                <a id='content-copy' href="!#" onClick={(e)=>this.onClick(e)} style={{width:'4.4rem',overflow:'hidden'}} className='content-copy'><i className='material-icons med right' onClick={()=> {this.copyToClipboard(tagList.tags)}}>content_copy</i></a>
                                 <div className="btn red darken-4" onClick={() => {this.props.deleteTagList(tagList._id);this.props.fetchTagLists();}}> Delete Tag List?</div>
                             </div>
                         </div>
@@ -45,6 +69,7 @@ class TagListList extends Component {
         });
     }
     render() {
+
         return (
             <div className='flex-column'>
                 <h4 style={{fontWeight:'800', textAlign:'center'}}>Your Saved Lists</h4>

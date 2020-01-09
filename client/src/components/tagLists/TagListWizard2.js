@@ -167,7 +167,7 @@ let TagListWizard2 = ({
                 <p style={{marginTop:'-1rem'}}>Choose up to 500ish</p>
                 <div className='soft-outter'  style={{marginBottom:'1rem'}}>
                     <div className='soft-inner' style={{padding:'1rem'}}>
-                        <div style={{fontFamily:'var(--bitter)',marginBottom:'1rem',display:'flex',justifyContent:'space-between'}}><h5>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5><a id='content-copy' href="!#" onClick={(e)=>onClick(e)} style={{width:'4rem',overflow:'hidden'}} className='content-copy'><i className='material-icons med right' onClick={()=> {copyToClipboard(listOfChosenTags)}}>content_copy</i></a></div>
+                        <div style={{fontFamily:'var(--bitter)',marginBottom:'1rem',display:'flex',justifyContent:'space-between'}}><h5>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5><a id='content-copy' href="!#" onClick={(e)=>onClick(e)} style={{width:'4.4rem',overflow:'hidden'}} className='content-copy'><i className='material-icons med right' onClick={()=> {copyToClipboard(listOfChosenTags)}}>content_copy</i></a></div>
                         <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTags.length === 0? <span className='red-text'>You haven't picked any tags yet!</span> : chosenTagBubbler(listOfChosenTags)}</div>
                     </div>
                 </div>

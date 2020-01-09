@@ -58,6 +58,11 @@ li > .dash-btn {
 li > .logout-btn {
     background-color: var(--secondaryDark);
 }
+li > .logout-btn:hover, .logout-btn:focus {
+    background: var(--softBackground);
+    color: var(--secondaryDark);
+}
+
 .sidenav > a {
     color: var(--softBackground);
 }
@@ -191,8 +196,11 @@ input:focus{
     border-bottom: 1px solid var(--secondaryLight)!important;
     box-shadow: 0 1px 0 0 var(--secondaryLight)!important;
 }
-.content-copy:focus,.content-copy:hover{
-    color:var(--secondary);
+#content-copy {
+    color: var(--secondaryDark)
+}
+#content-copy:focus,#content-copy:hover{
+    color:var(--secondaryLight);
 }
 
 /* Form Wizard Styles End */
