@@ -194,3 +194,7 @@ input:focus{
     border-radius:20px;
 }
 /* Taglist list styles end */
+
+#copyright {
+    width: 100%;
+}
