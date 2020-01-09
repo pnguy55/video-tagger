@@ -21,7 +21,7 @@ class Header extends Component {
             default:
                 return [
                     //satify the react key requirement
-                    <li key='1'><Link id='new-list' className='btn sidenav-close' to='/'>New List</Link></li>,
+                    <li key='1'><Link id='new-list' className='btn dash-btn sidenav-close' to='/'>New List</Link></li>,
                     <li key='2'><Link className='btn dash-btn sidenav-close' to='/tagLists'>Dashboard</Link></li>,
                     <li key='3'><a className='btn logout-btn sidenav-close' href='/api/logout'>Logout</a></li>                    
                 ]

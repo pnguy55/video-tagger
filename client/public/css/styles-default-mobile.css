@@ -40,6 +40,10 @@ li > .log-in-btn {
     background: var(--secondaryDark);
     color: var(--softBackground);    
 }
+li > .log-in-btn:hover {
+    color: var(--secondaryDark)!important;
+    background: var(--softBackground);    
+}
 
 .sidenav > li > .log-in-btn {
     background: var(--secondaryDark);
@@ -56,6 +60,12 @@ li > .logout-btn {
 }
 .sidenav > a {
     color: var(--softBackground);
+}
+.exit-menu {
+    position: absolute;
+    bottom: 5rem;
+    right: 1rem;
+    font-size: 5rem!important;
 }
 
 /* Neumorphism style classes start */

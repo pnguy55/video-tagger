@@ -38,6 +38,7 @@ class Sidenav extends Component {
                 </div>
             </li>
             {this.props.children}
+            <li key='4'><i className='exit-menu material-icons large sidenav-close'>close</i></li>
         </ul>
         <div className="hide-on-large-only">
           <i data-target='slide-out' className="sidenav-trigger material-icons">menu</i>
