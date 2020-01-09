@@ -79,13 +79,26 @@ class TagListWizard extends Component {
     }
 
     removeTagFromList(tagRemove) {
+        let currentComponent = this;
+        
         let newListOfChosenTags = this.state.listOfChosenTags
         let removed = newListOfChosenTags.splice(this.state.listOfChosenTags.indexOf(tagRemove),1);
         this.setState({
             listOfChosenTags: newListOfChosenTags,
             wholeListOfTags: [...this.state.wholeListOfTags, tagRemove]
-        })
-    }
+        }, () => {
+                
+
+            let x = currentComponent.state.listOfChosenTags.toString().replace(/,/g,'');
+            x = x.replace(/\s/g,'aaa')
+
+            x = x.replace(/[^a-zA-Z]/g, '').length;
+    
+            this.setState({
+                letterCount: x
+            })
+        }
+    )}
 
     chooseTagFromList(chosenTag){
         let currentComponent = this;
@@ -102,7 +115,7 @@ class TagListWizard extends Component {
         
                 this.setState({
                     letterCount: x
-                }, () => {})
+                })
                 
 
         })
