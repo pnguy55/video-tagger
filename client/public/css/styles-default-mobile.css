@@ -181,7 +181,9 @@ input:focus{
     border-bottom: 1px solid var(--secondaryLight)!important;
     box-shadow: 0 1px 0 0 var(--secondaryLight)!important;
 }
-
+.content-copy:focus,.content-copy:hover{
+    color:var(--secondary);
+}
 
 /* Form Wizard Styles End */
 

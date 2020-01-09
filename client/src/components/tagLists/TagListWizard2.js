@@ -133,8 +133,26 @@ let TagListWizard2 = ({
         return listOfTagBubbles;
     }
 
-    
+    function copyToClipboard(text) {
+        var dummy = document.createElement("textarea");
+        // to avoid breaking orgain page when copying more words
+        // cant copy when adding below this code
+        // dummy.style.display = 'none'
+        document.body.appendChild(dummy);
+        //Be careful if you use texarea. setAttribute('value', value), which works with "input" does not work with "textarea". – Eduard
+        dummy.value = text;
+        dummy.select();
+        document.execCommand("copy");
+        document.body.removeChild(dummy);
+    }
   
+    function onClick() {
+        console.log('onclick..')
+        let x = document.getElementById("content-copy").childElementCount;
+        if ( x < 2 ) {
+            document.getElementById('content-copy').insertAdjacentHTML("afterbegin",'"Copied!"')
+        }
+    }
 
     return (
         <div className='container'>
@@ -149,7 +167,7 @@ let TagListWizard2 = ({
                 <p style={{marginTop:'-1rem'}}>Choose up to 500ish</p>
                 <div className='soft-outter'  style={{marginBottom:'1rem'}}>
                     <div className='soft-inner' style={{padding:'1rem'}}>
-                        <h5 style={{fontFamily:'var(--bitter)'}}>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5>
+                        <div style={{fontFamily:'var(--bitter)',marginBottom:'1rem',display:'flex',justifyContent:'space-between'}}><h5>Chosen Tags<i className='material-icons'>arrow_drop_down</i></h5><a id='content-copy' href="!#" onClick={onClick} style={{width:'4rem',overflow:'hidden'}} className='content-copy'><i className='material-icons med right' onClick={()=> {copyToClipboard(listOfChosenTags)}}>content_copy</i></a></div>
                         <div style={{display:'flex',flexWrap:'wrap', width:'100%'}} className="flow-text">{listOfChosenTags.length === 0? <span className='red-text'>You haven't picked any tags yet!</span> : chosenTagBubbler(listOfChosenTags)}</div>
                     </div>
                 </div>
@@ -162,7 +180,7 @@ let TagListWizard2 = ({
                 <div className='container'>
                     {form_buttons()}
                     <ul className='flex-column' style={{listStyleType:'none'}}>
-                        <li key='1'><Link className='btn dash-btn sidenav-close' to='/tagLists'>View My Saved Lists</Link></li>
+                        <li key='1'><Link className='btn dash-btn' to='/tagLists'>View My Saved Lists</Link></li>
                     </ul>
                 </div>
             </form>

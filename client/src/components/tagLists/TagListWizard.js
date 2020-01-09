@@ -79,8 +79,10 @@ class TagListWizard extends Component {
     }
 
     removeTagFromList(tagRemove) {
+        let newListOfChosenTags = this.state.listOfChosenTags
+        let removed = newListOfChosenTags.splice(this.state.listOfChosenTags.indexOf(tagRemove),1);
         this.setState({
-            listOfChosenTagBubbles: this.state.listOfChosenTags.splice(this.state.listOfChosenTagBubbles.indexOf({key: `${tagRemove}`}),1),
+            listOfChosenTags: newListOfChosenTags,
             wholeListOfTags: [...this.state.wholeListOfTags, tagRemove]
         })
     }

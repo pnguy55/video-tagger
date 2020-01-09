@@ -47,8 +47,8 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
 
     const generateChoices = _.map(videoList.data, ({ videoIndex, title, videoId, videoURL, thumbnail, channelTitle, channelURL }) => {
         return (
-            <div className='flex-column col s12 m5 l5 offset-m1 offset-l1'>
-                <div className='soft-outter' style={{borderRadius:'100%'}}>
+            <div className='col s12 m5 l5 offset-m1 offset-l1' style={{textAlign:'center'}}>
+                <div className='soft-outter' style={{borderRadius:'100%',width:'fit-content',marginLeft:'40%'}}>
                     <div className='soft-inner' style={{borderRadius:'100%'}}>
                         <h4 style={{padding:'1rem 1.5rem',margin:'0px'}}>{videoIndex}</h4>
                     </div>
@@ -80,7 +80,7 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
     
 
     return (
-        <div className='container'>
+        <div>
             <script src="//cdn.jsdelivr.net/npm/afterglowplayer@1.x"></script>
                     
             <div className='soft-outter' style={{marginTop:'1rem'}}>
