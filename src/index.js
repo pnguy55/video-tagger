@@ -15,7 +15,7 @@ mongoose.connect(process.env.MONGO_URI, {useNewUrlParser: true, useUnifiedTopolo
 
 const app = express();
 
-// app.use(enforce.HTTPS({ trustProtoHeader: true }));
+app.use(enforce.HTTPS({ trustProtoHeader: true }));
 
 // this line will ensure that any kind of request body is parsed and assigned to req.body
 app.use(bodyParser.json());
