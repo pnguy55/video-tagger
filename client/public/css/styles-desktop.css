@@ -1,3 +1,10 @@
 #card-list{
     width: 70%;
 }
+
+.desktop-ad {
+    display: flex;
+}
+.mobile-ad {
+    display: none;
+}

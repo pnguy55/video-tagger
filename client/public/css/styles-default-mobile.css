@@ -213,6 +213,20 @@ input:focus{
 }
 /* Taglist list styles end */
 
+.accordion-toggle {
+    text-decoration: none;
+    padding: .5rem;
+    font-size: 2.5rem;
+    background: var(--secondaryDark);
+    color: var(--softBackground);
+}
 #copyright {
     width: 100%;
+}
+
+.mobile-ad {
+    display: flex;
+}
+.desktop-ad {
+    display: none;
 }
