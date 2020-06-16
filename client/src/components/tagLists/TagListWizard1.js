@@ -56,7 +56,7 @@ let TagListWizard1 = ({ onCancel, formValues, handleSubmit, getRelatedVideosHand
                 <div key={videoId} className='soft-outter' style={{padding: '0px'}}>
                     <div className='soft-outter card' style={{backgroundColor: "var(--softBackground)", width: '100%', height: '100%'}}>
                         <div className='card card-image' key={videoId} style={{display: 'flex', flexDirection: 'column'}}>
-                            <img src={thumbnail.url} alt={title + " thumbnail"} style={{height: 'auto', width: '100%'}} />
+                            <img src={thumbnail} alt={title + " thumbnail"} style={{height: 'auto', width: '100%'}} />
                             <a href={channelURL} target="_blank" rel='noopener noreferrer' className='card-title black white-text' style={{padding:'5px', fontSize:'1rem'}}>{channelTitle}<i className='material-icons right'>open_in_new</i></a>
                         </div>
                         <div className='card-content container flex-column' style={{padding:'0px 3px'}}>
