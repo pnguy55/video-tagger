@@ -56,7 +56,7 @@ module.exports = app => {
 
         // sample from google
         //GET https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=hi&type=video&videoDefinition=high&key=[YOUR_API_KEY] HTTP/1.1
-
+        axios.defaults.headers.common['referer'] = 'https://myvideotagger.com'; // for all requests
 
         let url = `https://www.googleapis.com/youtube/v3/search?maxResults=12&part=snippet&order=viewCount&q=${req.params.videoTitle}&type=video&videoDefinition=high&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
         console.log(url);
