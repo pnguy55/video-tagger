@@ -52,7 +52,15 @@ module.exports = app => {
     });
 
     app.get('/api/tagLists/gatherVideoList/:videoTitle', async (req, res) => {
-        axios.get(`https://www.googleapis.com/youtube/v3/search?maxResults=14&part=snippet&order=viewCount&q=${req.params.videoTitle}+&type=video+&videoDefinition=high&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`)
+
+
+        // sample from google
+        //GET https://www.googleapis.com/youtube/v3/search?part=snippet&order=viewCount&q=hi&type=video&videoDefinition=high&key=[YOUR_API_KEY] HTTP/1.1
+
+
+        let url = `https://www.googleapis.com/youtube/v3/search?maxResults=12&part=snippet&order=viewCount&q=${req.params.videoTitle}&type=video&videoDefinition=high&key=${process.env.REACT_APP_YOUTUBE_API_KEY}`;
+        console.log(url);
+        axios.get(url)
             .then(function (googleRes) {
                 const { items } = googleRes.data;
                 let index = 1;
