@@ -62,7 +62,7 @@ module.exports = app => {
                         title: decode(snippet.title),
                         videoId: id.videoId,
                         videoURL: `https://www.youtube.com/watch?v=${id.videoId}`,
-                        thumbnail: snippet.thumbnails.medium,
+                        thumbnail: snippet.thumbnails.default,
                         channelTitle: snippet.channelTitle,
                         channelURL: `https://www.youtube.com/channel/${snippet.channelId}`
                     });
